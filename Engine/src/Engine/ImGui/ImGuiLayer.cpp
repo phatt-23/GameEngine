@@ -4,8 +4,8 @@
 
 #include "ImGuiLayer.h"
 #include "Application.h"
-#include "Platform/OpenGL/ImGui_Impl_OpenGL.h"
-#include "Platform/OpenGL/ImGui_Impl_GLFW.h"
+#include "imgui/backends/imgui_impl_glfw.h"
+#include "imgui/backends/imgui_impl_opengl3.h"
 
 #include <GLFW/glfw3.h>
 
@@ -16,19 +16,6 @@ namespace Engine
 
     ImGuiLayer::~ImGuiLayer()
     = default;
-
-    void ImGuiLayer::OnEvent(Event &event)
-    {
-         EventDispatcher dispatcher(event);
-         dispatcher.Dispatch<MouseButtonPressedEvent>(EG_FORWARD_EVENT_TO_MEM_FN(ImGuiLayer::OnMouseButtonPressedEvent));
-         dispatcher.Dispatch<MouseButtonReleasedEvent>(EG_FORWARD_EVENT_TO_MEM_FN(ImGuiLayer::OnMouseButtonReleasedEvent));
-         dispatcher.Dispatch<MouseMovedEvent>(EG_FORWARD_EVENT_TO_MEM_FN(ImGuiLayer::OnMouseMovedEvent));
-         dispatcher.Dispatch<MouseScrolledEvent>(EG_FORWARD_EVENT_TO_MEM_FN(ImGuiLayer::OnMouseScrolledEvent));
-         dispatcher.Dispatch<KeyPressedEvent>(EG_FORWARD_EVENT_TO_MEM_FN(ImGuiLayer::OnKeyPressedEvent));
-         dispatcher.Dispatch<KeyReleasedEvent>(EG_FORWARD_EVENT_TO_MEM_FN(ImGuiLayer::OnKeyReleasedEvent));
-         dispatcher.Dispatch<KeyTypedEvent>(EG_FORWARD_EVENT_TO_MEM_FN(ImGuiLayer::OnKeyTypedEvent));
-         dispatcher.Dispatch<WindowResizeEvent>(EG_FORWARD_EVENT_TO_MEM_FN(ImGuiLayer::OnWindowResize));
-    }
 
     void ImGuiLayer::OnAttach()
     {
@@ -56,83 +43,34 @@ namespace Engine
         ImGui::DestroyContext();
     }
 
-    void ImGuiLayer::OnUpdate()
+    void ImGuiLayer::OnImGuiRender()
+    {
+
+    }
+
+    void ImGuiLayer::Begin()
     {
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
-        // start
+    }
 
-        static bool show = true;
-        ImGui::ShowDemoWindow(&show);
+    void ImGuiLayer::End()
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        Application& app = Application::Get();
+        io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
 
-        // end
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-        ImGuiIO& io = ImGui::GetIO();
-        Application& app = Application::Get();
-
-        io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
-
-        float time = (float)glfwGetTime();
-        io.DeltaTime = m_Time > 0.0f ? (time - m_Time) : (1.0/60.0);
-        m_Time = time;
-    }
-
-    bool ImGuiLayer::OnMouseButtonPressedEvent(MouseButtonPressedEvent &event) {
-//        auto& io = ImGui::GetIO();
-//        io.AddMouseButtonEvent(event.GetMouseButton(), true);
-//        return io.WantCaptureMouse;
-        return false;
-    }
-
-    bool ImGuiLayer::OnMouseButtonReleasedEvent(MouseButtonReleasedEvent &event) {
-//        auto& io = ImGui::GetIO();
-//        io.AddMouseButtonEvent(event.GetMouseButton(), false);
-//        return io.WantCaptureMouse;
-        return false;
-    }
-
-    bool ImGuiLayer::OnMouseMovedEvent(MouseMovedEvent &event) {
-//        auto& io = ImGui::GetIO();
-//        io.AddMousePosEvent(event.GetX(), event.GetY());
-//        return io.WantCaptureMouse;
-        return false;
-    }
-
-    bool ImGuiLayer::OnMouseScrolledEvent(MouseScrolledEvent &event) {
-//        auto& io = ImGui::GetIO();
-//        io.AddMouseWheelEvent(event.GetXOffset(), event.GetYOffset());
-//        return io.WantCaptureMouse;
-        return false;
-    }
-
-    bool ImGuiLayer::OnKeyPressedEvent(KeyPressedEvent &event) {
-        // ImGui::GetIO().AddKeyEvent(ImGui_ImplGlfw_KeyToImGuiKey(event.GetKeyCode(), 0), true);
-        return false;
-    }
-
-    bool ImGuiLayer::OnKeyReleasedEvent(KeyReleasedEvent &event) {
-        // ImGui::GetIO().AddKeyEvent(ImGui_ImplGlfw_KeyToImGuiKey(event.GetKeyCode(), 0), false);
-        return false;
-    }
-
-    bool ImGuiLayer::OnKeyTypedEvent(KeyTypedEvent &event) {
-//        if (0 < event.GetKeyCode() && event.GetKeyCode() < 0x10000)
-//        {
-//            ImGui::GetIO().AddInputCharacter(event.GetKeyCode());
-//        }
-
-        return false;
-    }
-
-    bool ImGuiLayer::OnWindowResize(WindowResizeEvent &event) {
-//        ImGuiIO& io = ImGui::GetIO();
-//        io.DisplaySize = ImVec2(event.GetWidth(), event.GetHeight());
-//        io.DisplayFramebufferScale = ImVec2(1.f, 1.f);
-
-        return false;
+        if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+        {
+            GLFWwindow* currentContext = glfwGetCurrentContext();
+            ImGui::UpdatePlatformWindows();
+            ImGui::RenderPlatformWindowsDefault();
+            glfwMakeContextCurrent(currentContext);
+        }
     }
 
 }

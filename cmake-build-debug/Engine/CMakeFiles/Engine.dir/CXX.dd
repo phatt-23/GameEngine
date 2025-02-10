@@ -1,6 +1,8 @@
 ninja_dyndep_version = 1.0
 build Engine/CMakeFiles/Engine.dir/src/Engine/Application.cpp.o: dyndep
 
+build Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiBuild.cpp.o: dyndep
+
 build Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o: dyndep
 
 build Engine/CMakeFiles/Engine.dir/src/Engine/Input.cpp.o: dyndep
@@ -14,8 +16,4 @@ build Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o: dyndep
 build Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o: dyndep
 
 build Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o: dyndep
-
-build Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/ImGui_Impl_GLFW.cpp.o: dyndep
-
-build Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/ImGui_Impl_OpenGL.cpp.o: dyndep
 

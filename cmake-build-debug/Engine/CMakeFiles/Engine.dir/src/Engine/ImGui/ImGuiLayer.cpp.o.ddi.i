@@ -135237,6 +135237,7 @@ namespace Engine
         virtual void OnAttach() {}
         virtual void OnDetach() {}
         virtual void OnUpdate() {}
+        virtual void OnImGuiRender() {}
 
         inline const std::string& GetName() const { return m_DebugName; }
     private:
@@ -135503,22 +135504,12 @@ namespace Engine
         ImGuiLayer();
         ~ImGuiLayer();
 
-        void OnEvent(Event& event) override;
-        void OnUpdate() override;
         void OnAttach() override;
         void OnDetach() override;
+        void OnImGuiRender() override;
 
-    private:
-        bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& event);
-        bool OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& event);
-        bool OnMouseMovedEvent(MouseMovedEvent& event);
-        bool OnMouseScrolledEvent(MouseScrolledEvent& event);
-
-        bool OnKeyPressedEvent(KeyPressedEvent& event);
-        bool OnKeyReleasedEvent(KeyReleasedEvent& event);
-        bool OnKeyTypedEvent(KeyTypedEvent& event);
-
-        bool OnWindowResize(WindowResizeEvent& event);
+        void Begin();
+        void End();
 
     private:
         float m_Time = 0.f;
@@ -135643,8 +135634,8 @@ namespace Engine
     Application* CreateApplication();
 }
 # 7 "/home/phatt/Programming/GameEngine/Engine/src/Engine/ImGui/ImGuiLayer.cpp" 2
-# 1 "/home/phatt/Programming/GameEngine/Engine/src/Platform/OpenGL/ImGui_Impl_OpenGL.h" 1
-# 29 "/home/phatt/Programming/GameEngine/Engine/src/Platform/OpenGL/ImGui_Impl_OpenGL.h"
+# 1 "/home/phatt/Programming/GameEngine/Engine/vendor/imgui/backends/imgui_impl_glfw.h" 1
+# 25 "/home/phatt/Programming/GameEngine/Engine/vendor/imgui/backends/imgui_impl_glfw.h"
        
 # 1 "/home/phatt/Programming/GameEngine/Engine/vendor/imgui/imgui.h" 1
 # 59 "/home/phatt/Programming/GameEngine/Engine/vendor/imgui/imgui.h"
@@ -139380,25 +139371,7 @@ namespace ImGui
 }
 # 3987 "/home/phatt/Programming/GameEngine/Engine/vendor/imgui/imgui.h"
 #pragma GCC diagnostic pop
-# 31 "/home/phatt/Programming/GameEngine/Engine/src/Platform/OpenGL/ImGui_Impl_OpenGL.h" 2
-
-
-
- bool ImGui_ImplOpenGL3_Init(const char* glsl_version = nullptr);
- void ImGui_ImplOpenGL3_Shutdown();
- void ImGui_ImplOpenGL3_NewFrame();
- void ImGui_ImplOpenGL3_RenderDrawData(ImDrawData* draw_data);
-
-
- bool ImGui_ImplOpenGL3_CreateFontsTexture();
- void ImGui_ImplOpenGL3_DestroyFontsTexture();
- bool ImGui_ImplOpenGL3_CreateDeviceObjects();
- void ImGui_ImplOpenGL3_DestroyDeviceObjects();
-# 8 "/home/phatt/Programming/GameEngine/Engine/src/Engine/ImGui/ImGuiLayer.cpp" 2
-# 1 "/home/phatt/Programming/GameEngine/Engine/src/Platform/OpenGL/ImGui_Impl_GLFW.h" 1
-# 25 "/home/phatt/Programming/GameEngine/Engine/src/Platform/OpenGL/ImGui_Impl_GLFW.h"
-       
-
+# 27 "/home/phatt/Programming/GameEngine/Engine/vendor/imgui/backends/imgui_impl_glfw.h" 2
 
 
 struct GLFWwindow;
@@ -139410,7 +139383,7 @@ struct GLFWmonitor;
  bool ImGui_ImplGlfw_InitForOther(GLFWwindow* window, bool install_callbacks);
  void ImGui_ImplGlfw_Shutdown();
  void ImGui_ImplGlfw_NewFrame();
-# 48 "/home/phatt/Programming/GameEngine/Engine/src/Platform/OpenGL/ImGui_Impl_GLFW.h"
+# 48 "/home/phatt/Programming/GameEngine/Engine/vendor/imgui/backends/imgui_impl_glfw.h"
  void ImGui_ImplGlfw_InstallCallbacks(GLFWwindow* window);
  void ImGui_ImplGlfw_RestoreCallbacks(GLFWwindow* window);
 
@@ -139430,9 +139403,24 @@ struct GLFWmonitor;
 
 
  void ImGui_ImplGlfw_Sleep(int milliseconds);
+# 8 "/home/phatt/Programming/GameEngine/Engine/src/Engine/ImGui/ImGuiLayer.cpp" 2
+# 1 "/home/phatt/Programming/GameEngine/Engine/vendor/imgui/backends/imgui_impl_opengl3.h" 1
+# 29 "/home/phatt/Programming/GameEngine/Engine/vendor/imgui/backends/imgui_impl_opengl3.h"
+       
 
 
-ImGuiKey ImGui_ImplGlfw_KeyToImGuiKey(int keycode, int scancode);
+
+
+ bool ImGui_ImplOpenGL3_Init(const char* glsl_version = nullptr);
+ void ImGui_ImplOpenGL3_Shutdown();
+ void ImGui_ImplOpenGL3_NewFrame();
+ void ImGui_ImplOpenGL3_RenderDrawData(ImDrawData* draw_data);
+
+
+ bool ImGui_ImplOpenGL3_CreateFontsTexture();
+ void ImGui_ImplOpenGL3_DestroyFontsTexture();
+ bool ImGui_ImplOpenGL3_CreateDeviceObjects();
+ void ImGui_ImplOpenGL3_DestroyDeviceObjects();
 # 9 "/home/phatt/Programming/GameEngine/Engine/src/Engine/ImGui/ImGuiLayer.cpp" 2
 
 # 1 "/usr/include/GLFW/glfw3.h" 1 3 4
@@ -139802,19 +139790,6 @@ namespace Engine
     ImGuiLayer::~ImGuiLayer()
     = default;
 
-    void ImGuiLayer::OnEvent(Event &event)
-    {
-         EventDispatcher dispatcher(event);
-         dispatcher.Dispatch<MouseButtonPressedEvent>(([this](auto&& e) -> bool { return ImGuiLayer::OnMouseButtonPressedEvent(e); }));
-         dispatcher.Dispatch<MouseButtonReleasedEvent>(([this](auto&& e) -> bool { return ImGuiLayer::OnMouseButtonReleasedEvent(e); }));
-         dispatcher.Dispatch<MouseMovedEvent>(([this](auto&& e) -> bool { return ImGuiLayer::OnMouseMovedEvent(e); }));
-         dispatcher.Dispatch<MouseScrolledEvent>(([this](auto&& e) -> bool { return ImGuiLayer::OnMouseScrolledEvent(e); }));
-         dispatcher.Dispatch<KeyPressedEvent>(([this](auto&& e) -> bool { return ImGuiLayer::OnKeyPressedEvent(e); }));
-         dispatcher.Dispatch<KeyReleasedEvent>(([this](auto&& e) -> bool { return ImGuiLayer::OnKeyReleasedEvent(e); }));
-         dispatcher.Dispatch<KeyTypedEvent>(([this](auto&& e) -> bool { return ImGuiLayer::OnKeyTypedEvent(e); }));
-         dispatcher.Dispatch<WindowResizeEvent>(([this](auto&& e) -> bool { return ImGuiLayer::OnWindowResize(e); }));
-    }
-
     void ImGuiLayer::OnAttach()
     {
         ImGui::DebugCheckVersionAndDataLayout("1.91.9 WIP", sizeof(ImGuiIO), sizeof(ImGuiStyle), sizeof(ImVec2), sizeof(ImVec4), sizeof(ImDrawVert), sizeof(ImDrawIdx));
@@ -139841,83 +139816,34 @@ namespace Engine
         ImGui::DestroyContext();
     }
 
-    void ImGuiLayer::OnUpdate()
+    void ImGuiLayer::OnImGuiRender()
+    {
+
+    }
+
+    void ImGuiLayer::Begin()
     {
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
+    }
 
-
-        static bool show = true;
-        ImGui::ShowDemoWindow(&show);
-
+    void ImGuiLayer::End()
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        Application& app = Application::Get();
+        io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-        ImGuiIO& io = ImGui::GetIO();
-        Application& app = Application::Get();
-
-        io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
-
-        float time = (float)glfwGetTime();
-        io.DeltaTime = m_Time > 0.0f ? (time - m_Time) : (1.0/60.0);
-        m_Time = time;
-    }
-
-    bool ImGuiLayer::OnMouseButtonPressedEvent(MouseButtonPressedEvent &event) {
-
-
-
-        return false;
-    }
-
-    bool ImGuiLayer::OnMouseButtonReleasedEvent(MouseButtonReleasedEvent &event) {
-
-
-
-        return false;
-    }
-
-    bool ImGuiLayer::OnMouseMovedEvent(MouseMovedEvent &event) {
-
-
-
-        return false;
-    }
-
-    bool ImGuiLayer::OnMouseScrolledEvent(MouseScrolledEvent &event) {
-
-
-
-        return false;
-    }
-
-    bool ImGuiLayer::OnKeyPressedEvent(KeyPressedEvent &event) {
-
-        return false;
-    }
-
-    bool ImGuiLayer::OnKeyReleasedEvent(KeyReleasedEvent &event) {
-
-        return false;
-    }
-
-    bool ImGuiLayer::OnKeyTypedEvent(KeyTypedEvent &event) {
-
-
-
-
-
-        return false;
-    }
-
-    bool ImGuiLayer::OnWindowResize(WindowResizeEvent &event) {
-
-
-
-
-        return false;
+        if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+        {
+            GLFWwindow* window = glfwGetCurrentContext();
+            ImGui::UpdatePlatformWindows();
+            ImGui::RenderPlatformWindowsDefault();
+            glfwMakeContextCurrent(window);
+        }
     }
 
 }

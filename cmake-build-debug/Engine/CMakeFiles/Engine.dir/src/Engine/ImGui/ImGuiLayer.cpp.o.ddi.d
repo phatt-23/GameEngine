@@ -266,9 +266,9 @@ Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o.ddi: \
  /home/phatt/Programming/GameEngine/Engine/src/Engine/Application.h \
  /home/phatt/Programming/GameEngine/Engine/src/Engine/Window.h \
  /home/phatt/Programming/GameEngine/Engine/src/Engine/LayerStack.h \
- /home/phatt/Programming/GameEngine/Engine/src/Platform/OpenGL/ImGui_Impl_OpenGL.h \
+ /home/phatt/Programming/GameEngine/Engine/vendor/imgui/backends/imgui_impl_glfw.h \
  /home/phatt/Programming/GameEngine/Engine/vendor/imgui/imgui.h \
  /home/phatt/Programming/GameEngine/Engine/vendor/imgui/imconfig.h \
  /usr/lib/gcc/x86_64-redhat-linux/14/include/float.h \
- /home/phatt/Programming/GameEngine/Engine/src/Platform/OpenGL/ImGui_Impl_GLFW.h \
+ /home/phatt/Programming/GameEngine/Engine/vendor/imgui/backends/imgui_impl_opengl3.h \
  /usr/include/GLFW/glfw3.h

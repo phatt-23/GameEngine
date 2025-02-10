@@ -15,22 +15,12 @@ namespace Engine
         ImGuiLayer();
         ~ImGuiLayer();
 
-        void OnEvent(Event& event) override;
-        void OnUpdate() override;
         void OnAttach() override;
         void OnDetach() override;
+        void OnImGuiRender() override;
 
-    private:
-        bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& event);
-        bool OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& event);
-        bool OnMouseMovedEvent(MouseMovedEvent& event);
-        bool OnMouseScrolledEvent(MouseScrolledEvent& event);
-
-        bool OnKeyPressedEvent(KeyPressedEvent& event);
-        bool OnKeyReleasedEvent(KeyReleasedEvent& event);
-        bool OnKeyTypedEvent(KeyTypedEvent& event);
-
-        bool OnWindowResize(WindowResizeEvent& event);
+        void Begin();
+        void End();
 
     private:
         float m_Time = 0.f;
