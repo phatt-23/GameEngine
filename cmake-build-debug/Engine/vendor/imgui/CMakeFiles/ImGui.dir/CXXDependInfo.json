@@ -1,0 +1,18 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "GNU",
+	"compiler-simulate-id" : "",
+	"config" : "Debug",
+	"cxx-modules" : {},
+	"dir-cur-bld" : "/home/phatt/Programming/GameEngine/cmake-build-debug/Engine/vendor/imgui",
+	"dir-cur-src" : "/home/phatt/Programming/GameEngine/Engine/vendor/imgui",
+	"dir-top-bld" : "/home/phatt/Programming/GameEngine/cmake-build-debug",
+	"dir-top-src" : "/home/phatt/Programming/GameEngine",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : [],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "/home/phatt/Programming/GameEngine/cmake-build-debug/Engine/vendor/imgui/CMakeFiles/ImGui.dir"
+}

@@ -1,0 +1,46 @@
+//
+// Created by phatt on 2/9/25.
+//
+#pragma once
+
+#include <utility>
+
+#include "Event/Event.h"
+
+namespace Engine
+{
+    struct WindowProps
+    {
+        std::string Title;
+        unsigned int Width, Height;
+
+        explicit WindowProps(std::string title = "Engine Window",
+                    unsigned int width = 1280,
+                    unsigned int height = 720)
+            : Title(std::move(title)), Width(width), Height(height) {}
+    };
+
+    class Window
+    {
+    public:
+        using EventCallbackFn = std::function<void(Event&)>;
+
+        Window() = default;
+        virtual ~Window() = default;
+
+        virtual void OnUpdate() = 0;
+
+        virtual unsigned int GetWidth() const = 0;
+        virtual unsigned int GetHeight() const = 0;
+
+        virtual void SetEventCallback(EventCallbackFn&& fn) = 0;
+
+        virtual void SetVSync(bool enable) = 0;
+        virtual bool IsVSync() const = 0;
+
+        virtual void* GetNativeWindow() = 0;
+
+        static Window* Create(const WindowProps& props = WindowProps());
+    };
+
+}

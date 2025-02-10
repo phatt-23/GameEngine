@@ -1,0 +1,11 @@
+{
+"rules": [
+{
+"primary-output": "Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/ImGui_Impl_OpenGL.cpp.o",
+"requires": [
+]
+}
+],
+"version": 0,
+"revision": 0
+}

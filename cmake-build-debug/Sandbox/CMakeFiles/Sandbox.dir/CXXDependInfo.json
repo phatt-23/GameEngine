@@ -1,0 +1,27 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "GNU",
+	"compiler-simulate-id" : "",
+	"config" : "Debug",
+	"cxx-modules" : {},
+	"dir-cur-bld" : "/home/phatt/Programming/GameEngine/cmake-build-debug/Sandbox",
+	"dir-cur-src" : "/home/phatt/Programming/GameEngine/Sandbox",
+	"dir-top-bld" : "/home/phatt/Programming/GameEngine/cmake-build-debug",
+	"dir-top-src" : "/home/phatt/Programming/GameEngine",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : 
+	[
+		"/home/phatt/Programming/GameEngine/Engine",
+		"/home/phatt/Programming/GameEngine/Engine/src",
+		"/home/phatt/Programming/GameEngine/Engine/src/Engine",
+		"/home/phatt/Programming/GameEngine/Engine/vendor",
+		"/home/phatt/Programming/GameEngine/Engine/vendor/imgui",
+		"/home/phatt/Programming/GameEngine/Engine/vendor/glad/include",
+		"/home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include"
+	],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "/home/phatt/Programming/GameEngine/cmake-build-debug/Sandbox/CMakeFiles/Sandbox.dir"
+}

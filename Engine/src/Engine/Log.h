@@ -5,23 +5,21 @@
 
 #include "EnginePCH.h"
 #include "Core.h"
+
 #include <spdlog/spdlog.h>
 
 namespace Engine
 {
 
-
     class Log {
     public:
         static void Init();
 
-        [[nodiscard]]
         inline static std::shared_ptr<spdlog::logger>& GetCoreLogger()
         {
             return s_CoreLogger;
         }
 
-        [[nodiscard]]
         inline static std::shared_ptr<spdlog::logger>& GetClientLogger()
         {
             return s_ClientLogger;
@@ -32,5 +30,18 @@ namespace Engine
         static std::shared_ptr<spdlog::logger> s_ClientLogger;
     };
 
-
 }
+
+#define EG_CORE_TRACE(...)     ::Engine::Log::GetCoreLogger()->trace(__VA_ARGS__)
+#define EG_CORE_DEBUG(...)     ::Engine::Log::GetCoreLogger()->debug(__VA_ARGS__)
+#define EG_CORE_INFO(...)      ::Engine::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define EG_CORE_WARN(...)      ::Engine::Log::GetCoreLogger()->warn(__VA_ARGS__)
+#define EG_CORE_ERROR(...)     ::Engine::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define EG_CORE_CRITICAL(...)  ::Engine::Log::GetCoreLogger()->critical(__VA_ARGS__)
+
+#define EG_TRACE(...)     ::Engine::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define EG_DEBUG(...)     ::Engine::Log::GetCoreLogger()->debug(__VA_ARGS__)
+#define EG_INFO(...)      ::Engine::Log::GetClientLogger()->info(__VA_ARGS__)
+#define EG_WARN(...)      ::Engine::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define EG_ERROR(...)     ::Engine::Log::GetClientLogger()->error(__VA_ARGS__)
+#define EG_CRITICAL(...)  ::Engine::Log::GetCoreLogger()->critical(__VA_ARGS__)

@@ -1,0 +1,11 @@
+{
+"rules": [
+{
+"primary-output": "Sandbox/CMakeFiles/Sandbox.dir/src/SandboxApp.cpp.o",
+"requires": [
+]
+}
+],
+"version": 0,
+"revision": 0
+}

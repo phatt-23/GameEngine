@@ -1,0 +1,11 @@
+{
+"rules": [
+{
+"primary-output": "Engine/vendor/imgui/CMakeFiles/ImGui.dir/imgui_demo.cpp.o",
+"requires": [
+]
+}
+],
+"version": 0,
+"revision": 0
+}

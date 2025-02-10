@@ -8,9 +8,10 @@ extern Engine::Application* Engine::CreateApplication();
 int main()
 {
     Engine::Log::Init();
+    EG_CORE_WARN("Initialized Log.", 0);
 
     auto* app = Engine::CreateApplication();
-    app->run();
+    app->Run();
     delete app;
     return 0;
 }

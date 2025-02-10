@@ -3,9 +3,12 @@
 //
 #pragma once
 
-#include "src/Engine/Application.h"
-#include "src/Engine/Log.h"
-
+#include "Engine/Application.h"
+#include "Engine/Layer.h"
+#include "Engine/Log.h"
+#include "Engine/Input.h"
+#include "Engine/KeyCodes.h"
+#include "Engine/ImGui/ImGuiLayer.h"
 
 ///////// Entry point ////////
 #include "src/Engine/EntryPoint.h"
