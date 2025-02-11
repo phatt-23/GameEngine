@@ -1,7 +1,0 @@
-ninja_dyndep_version = 1.0
-build CMakeFiles/Engine.dir/src/Engine/Application.cpp.o: dyndep
-
-build CMakeFiles/Engine.dir/src/Engine/Log.cpp.o: dyndep
-
-build CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o: dyndep
-

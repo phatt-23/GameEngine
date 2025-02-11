@@ -1,3 +1,0 @@
-/home/phatt/Programming/GameEngine/Engine/cmake-build-debug/CMakeFiles/Engine.dir
-/home/phatt/Programming/GameEngine/Engine/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/phatt/Programming/GameEngine/Engine/cmake-build-debug/CMakeFiles/rebuild_cache.dir
