@@ -9,16 +9,16 @@ public:
     ExampleLayer()
         : Layer("Layer") {}
 
+    ~ExampleLayer() override = default;
+
     void OnUpdate() override
     {
-        if (Engine::Input::IsKeyPressed(EG_KEY_TAB))
-        {
-            EG_INFO("Tab key is pressed!");
-        }
+    }
 
-        auto model = glm::mat4(1.0f);
-
-        EG_CORE_DEBUG("{}", model[0][0]);
+    void OnImGuiRender() override
+    {
+        static float f = 0;
+        ImGui::InputFloat("float", &f);
     }
 
     void OnEvent(Engine::Event& event) override
@@ -33,16 +33,15 @@ public:
     Sandbox()
     {
         PushLayer(new ExampleLayer());
-        PushOverlay(new Engine::ImGuiLayer());
     }
 
-    ~Sandbox()
-    {
-    }
+    ~Sandbox() override
+    = default;
 };
 
 
-Engine::Application *Engine::CreateApplication() {
+Engine::Application* Engine::CreateApplication()
+{
     return new Sandbox;
 }
 

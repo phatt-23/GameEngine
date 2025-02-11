@@ -134771,32 +134771,32 @@ public:
     void log(level::level_enum lvl, string_view_t msg) { log(source_loc{}, lvl, msg); }
 
     template <typename... Args>
-    void trace(format_string_t<Args...> fmt, Args &&...args) {
+    void trace(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::trace, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
-    void debug(format_string_t<Args...> fmt, Args &&...args) {
+    void debug(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::debug, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
-    void info(format_string_t<Args...> fmt, Args &&...args) {
+    void info(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::info, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
-    void warn(format_string_t<Args...> fmt, Args &&...args) {
+    void warn(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::warn, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
-    void error(format_string_t<Args...> fmt, Args &&...args) {
+    void error(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::err, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
-    void critical(format_string_t<Args...> fmt, Args &&...args) {
+    void critical(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::critical, fmt, std::forward<Args>(args)...);
     }
 # 231 "/home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include/spdlog/logger.h" 3 4
@@ -135231,7 +135231,7 @@ namespace Engine
         explicit Layer(std::string debugName = "Layer")
             : m_DebugName(std::move(debugName)) {}
 
-        ~Layer() = default;
+        virtual ~Layer() = default;
 
         virtual void OnEvent(Event& event) {}
         virtual void OnAttach() {}
@@ -135602,6 +135602,213 @@ namespace Engine
 }
 # 8 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Application.h" 2
 
+# 1 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/VertexArray.h" 1
+
+
+
+       
+
+
+
+# 1 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/Buffer.h" 1
+
+
+
+       
+
+
+namespace Engine
+{
+
+
+
+
+    enum class ShaderDataType
+    {
+        None = 0,
+        Bool,
+        Float, Float2, Float3, Float4,
+        Int, Int2, Int3, Int4,
+        Mat3, Mat4,
+    };
+
+    static unsigned int SizeofShaderDataType(ShaderDataType type)
+    {
+        switch (type)
+        {
+            case ShaderDataType::Bool: return 1;
+            case ShaderDataType::Float: return 4;
+            case ShaderDataType::Float2: return 4 * 2;
+            case ShaderDataType::Float3: return 4 * 3;
+            case ShaderDataType::Float4: return 4 * 4;
+            case ShaderDataType::Int: return 4;
+            case ShaderDataType::Int2: return 4 * 2;
+            case ShaderDataType::Int3: return 4 * 3;
+            case ShaderDataType::Int4: return 4 * 4;
+            case ShaderDataType::Mat3: return 3 * 3 * 4;
+            case ShaderDataType::Mat4: return 4 * 4 * 4;
+            case ShaderDataType::None:
+                break;
+        }
+
+        { if (!(false)) { ::Engine::Log::GetCoreLogger()->error("Assertion failed: {0}", "Unknown ShaderDataType!"); __builtin_trap(); } };
+        return 0;
+    }
+
+    struct BufferElement
+    {
+        std::string Name;
+        ShaderDataType Type;
+        unsigned int Size;
+        unsigned int Offset;
+        bool Normalized;
+
+        BufferElement(ShaderDataType type, std::string&& name, bool normalized = false)
+            : Name(name), Type(type), Size(SizeofShaderDataType(type)), Offset(0), Normalized(normalized) {}
+
+        int GetElementCount() const {
+            switch (Type)
+            {
+                case ShaderDataType::Int:
+                case ShaderDataType::Bool:
+                case ShaderDataType::Float: return 1;
+                case ShaderDataType::Int2:
+                case ShaderDataType::Float2: return 2;
+                case ShaderDataType::Int3:
+                case ShaderDataType::Float3: return 3;
+                case ShaderDataType::Int4:
+                case ShaderDataType::Float4: return 4;
+                case ShaderDataType::Mat3: return 3 * 3;
+                case ShaderDataType::Mat4: return 4 * 4;
+                case ShaderDataType::None: break;
+            }
+            { if (!(false)) { ::Engine::Log::GetCoreLogger()->error("Assertion failed: {0}", "Unknown type!"); __builtin_trap(); } };
+            return 0;
+        }
+    };
+
+    class BufferLayout
+    {
+    public:
+        BufferLayout();
+        BufferLayout(std::initializer_list<BufferElement>&& elements);
+        ~BufferLayout();
+
+        unsigned int GetStride() const { return m_Stride; }
+        const std::vector<BufferElement> GetElements() const { return m_Elements; }
+
+        std::vector<BufferElement>::const_iterator begin() const { return m_Elements.begin(); }
+        std::vector<BufferElement>::const_iterator end() const { return m_Elements.end(); }
+
+    private:
+        void CalculateOffsetsAndStride();
+
+    private:
+        std::vector<BufferElement> m_Elements;
+        unsigned int m_Stride;
+    };
+
+
+
+
+
+    class VertexBuffer
+    {
+    public:
+        virtual ~VertexBuffer() = default;
+
+        virtual void Bind() const = 0;
+        virtual void Unbind() const = 0;
+
+        virtual const BufferLayout& GetLayout() const = 0;
+        virtual void SetLayout(BufferLayout&& layout) = 0;
+
+        static VertexBuffer* Create(float* vertices, unsigned int count);
+    };
+
+
+
+
+
+    class IndexBuffer
+    {
+    public:
+        virtual ~IndexBuffer() = default;
+
+        virtual void Bind() const = 0;
+        virtual void Unbind() const = 0;
+
+        virtual unsigned int GetCount() const = 0;
+
+        static IndexBuffer* Create(unsigned int* indices, unsigned int count);
+    };
+
+}
+# 9 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/VertexArray.h" 2
+
+namespace Engine
+{
+
+    class VertexArray
+    {
+    public:
+        VertexArray() = default;
+        virtual ~VertexArray() = default;
+
+        virtual void Bind() const = 0;
+        virtual void Unbind() const = 0;
+
+        virtual void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer) = 0;
+        virtual void SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer) = 0;
+
+        virtual const std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffers() const = 0;
+        virtual const std::shared_ptr<IndexBuffer>& GetIndexBuffer() const = 0;
+
+        static VertexArray* Create();
+    };
+
+}
+# 10 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Application.h" 2
+# 1 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/Shader.h" 1
+
+
+
+       
+
+namespace Engine
+{
+    enum class ShaderType
+    {
+        None = 0,
+        VertexShader,
+        FragmentShader,
+    };
+
+    class Shader
+    {
+    public:
+        Shader(const std::string& vertexSource, const std::string& fragmentSource);
+        ~Shader();
+
+        void Bind() const;
+        void Unbind() const;
+
+    private:
+        static unsigned int CompileSource(ShaderType type, const std::string& source);
+
+    private:
+        unsigned int m_RendererID;
+    };
+
+    struct ShaderSource
+    {
+        std::string VertexShader;
+        std::string FragmentShader;
+    };
+
+}
+# 11 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Application.h" 2
+
 namespace Engine
 {
 
@@ -135619,15 +135826,19 @@ namespace Engine
 
         inline Window& GetWindow() { return *m_Window; }
 
-        static Application& Get() { return *s_Instance; }
+        static Application& Get();
     private:
         bool OnWindowClose(Event& event);
+        bool OnWindowResize(WindowResizeEvent& event) const;
 
     private:
-        std::unique_ptr<Window> m_Window;
         bool m_Running = true;
         LayerStack m_LayerStack;
+        std::unique_ptr<Window> m_Window;
+        ImGuiLayer* m_ImGuiLayer;
 
+        std::shared_ptr<VertexArray> m_VertexArray;
+        std::shared_ptr<Shader> m_Shader;
     };
 
 
@@ -139784,6 +139995,8 @@ typedef struct GLFWgamepadstate
 # 12 "/home/phatt/Programming/GameEngine/Engine/src/Engine/ImGui/ImGuiLayer.cpp"
 namespace Engine
 {
+    static bool ImGuiInitialized = false;
+
     ImGuiLayer::ImGuiLayer()
         : Layer("ImGuiLayer") {}
 
@@ -139792,15 +140005,17 @@ namespace Engine
 
     void ImGuiLayer::OnAttach()
     {
+        if (ImGuiInitialized)
+            return;
+
         ImGui::DebugCheckVersionAndDataLayout("1.91.9 WIP", sizeof(ImGuiIO), sizeof(ImGuiStyle), sizeof(ImVec2), sizeof(ImVec4), sizeof(ImDrawVert), sizeof(ImDrawIdx));
         ImGui::CreateContext();
         ImGui::StyleColorsDark();
 
         ImGuiIO& io = ImGui::GetIO();
-        io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
-        io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
-        io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+        io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+        io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
         Application& app = Application::Get();
         auto* window = (GLFWwindow*)app.GetWindow().GetNativeWindow();
@@ -139814,11 +140029,6 @@ namespace Engine
         ImGui_ImplOpenGL3_Shutdown();
         ImGui_ImplGlfw_Shutdown();
         ImGui::DestroyContext();
-    }
-
-    void ImGuiLayer::OnImGuiRender()
-    {
-
     }
 
     void ImGuiLayer::Begin()
@@ -139839,11 +140049,17 @@ namespace Engine
 
         if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
         {
-            GLFWwindow* window = glfwGetCurrentContext();
+            GLFWwindow* currentContext = glfwGetCurrentContext();
             ImGui::UpdatePlatformWindows();
             ImGui::RenderPlatformWindowsDefault();
-            glfwMakeContextCurrent(window);
+            glfwMakeContextCurrent(currentContext);
         }
+    }
+
+    void ImGuiLayer::OnImGuiRender()
+    {
+        static bool show = true;
+        ImGui::ShowDemoWindow(&show);
     }
 
 }

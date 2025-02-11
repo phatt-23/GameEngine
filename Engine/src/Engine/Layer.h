@@ -12,7 +12,7 @@ namespace Engine
         explicit Layer(std::string  debugName = "Layer")
             : m_DebugName(std::move(debugName)) {}
 
-        ~Layer() = default;
+        virtual ~Layer() = default;
 
         virtual void OnEvent(Event& event) {}
         virtual void OnAttach() {}

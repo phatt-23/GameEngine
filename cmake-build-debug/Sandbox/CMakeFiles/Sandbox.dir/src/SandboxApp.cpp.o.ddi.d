@@ -263,20 +263,24 @@ Sandbox/CMakeFiles/Sandbox.dir/src/SandboxApp.cpp.o.ddi: \
  /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include/spdlog/version.h \
  /home/phatt/Programming/GameEngine/Engine/src/Engine/LayerStack.h \
  /home/phatt/Programming/GameEngine/Engine/src/Engine/Layer.h \
- /home/phatt/Programming/GameEngine/Engine/src/Engine/Input.h \
- /home/phatt/Programming/GameEngine/Engine/src/Engine/KeyCodes.h \
  /home/phatt/Programming/GameEngine/Engine/src/Engine/ImGui/ImGuiLayer.h \
  /home/phatt/Programming/GameEngine/Engine/src/Engine/Event/MouseEvent.h \
  /home/phatt/Programming/GameEngine/Engine/src/Engine/Event/KeyEvent.h \
  /home/phatt/Programming/GameEngine/Engine/src/Engine/Event/ApplicationEvent.h \
+ /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/VertexArray.h \
+ /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/Buffer.h \
+ /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/Shader.h \
+ /home/phatt/Programming/GameEngine/Engine/src/Engine/Input.h \
+ /home/phatt/Programming/GameEngine/Engine/src/Engine/KeyCodes.h \
+ /home/phatt/Programming/GameEngine/Engine/vendor/imgui/imgui.h \
+ /home/phatt/Programming/GameEngine/Engine/vendor/imgui/imconfig.h \
+ /usr/lib/gcc/x86_64-redhat-linux/14/include/float.h \
  /home/phatt/Programming/GameEngine/Engine/src/Engine/EntryPoint.h \
  /usr/include/glm/glm.hpp /usr/include/glm/detail/_fixes.hpp \
  /usr/include/glm/detail/setup.hpp /usr/include/glm/simd/platform.h \
- /usr/include/c++/14/cfloat \
- /usr/lib/gcc/x86_64-redhat-linux/14/include/float.h \
- /usr/include/glm/fwd.hpp /usr/include/glm/detail/qualifier.hpp \
- /usr/include/glm/detail/setup.hpp /usr/include/glm/vec2.hpp \
- /usr/include/glm/ext/vector_bool2.hpp \
+ /usr/include/c++/14/cfloat /usr/include/glm/fwd.hpp \
+ /usr/include/glm/detail/qualifier.hpp /usr/include/glm/detail/setup.hpp \
+ /usr/include/glm/vec2.hpp /usr/include/glm/ext/vector_bool2.hpp \
  /usr/include/glm/detail/type_vec2.hpp \
  /usr/include/glm/detail/type_vec2.inl \
  /usr/include/glm/detail/compute_vector_relational.hpp \

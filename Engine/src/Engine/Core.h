@@ -32,11 +32,9 @@
 #endif
 
 
-#define EG_FUNCTION_CURRYING_USE_LAMBDA
-
 /// Create curried member-function with current object instance bounded.
-#ifdef EG_FUNCTION_CURRYING_USE_LAMBDA
-    #define EG_FORWARD_EVENT_TO_MEM_FN(fn) ([this](auto&& e) -> bool { return fn(e); })
+#ifdef ENGINE_FUNCTION_CURRYING_USE_LAMBDA
+    #define EG_FORWARD_EVENT_TO_MEM_FN(fn) ([this](auto&& e) -> bool { return fn(std::forward<decltype(e)>(e)); })
 #else
     #define EG_FORWARD_EVENT_TO_MEM_FN(fn) (std::bind(&(fn), this, std::placeholders::_1))
 #endif

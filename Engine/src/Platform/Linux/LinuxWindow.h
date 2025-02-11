@@ -5,8 +5,9 @@
 
 
 #include "Window.h"
+#include "Renderer/GraphicsContext.h"
 
-#include <GLFW/glfw3.h>
+class GLFWwindow;
 
 namespace Engine
 {
@@ -38,6 +39,7 @@ namespace Engine
 
     private:
         GLFWwindow* m_Window;
+        GraphicsContext* m_Context;
 
         struct WindowData
         {

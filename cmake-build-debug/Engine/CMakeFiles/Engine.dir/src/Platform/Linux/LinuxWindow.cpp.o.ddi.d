@@ -260,9 +260,9 @@ Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o.ddi: \
  /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include/spdlog/details/log_msg_buffer.h \
  /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include/spdlog/details/log_msg.h \
  /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include/spdlog/version.h \
- /usr/include/GLFW/glfw3.h \
+ /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/GraphicsContext.h \
  /home/phatt/Programming/GameEngine/Engine/src/Engine/Event/ApplicationEvent.h \
  /home/phatt/Programming/GameEngine/Engine/src/Engine/Event/KeyEvent.h \
  /home/phatt/Programming/GameEngine/Engine/src/Engine/Event/MouseEvent.h \
- /home/phatt/Programming/GameEngine/Engine/vendor/glad/include/glad/glad.h \
- /home/phatt/Programming/GameEngine/Engine/vendor/glad/include/KHR/khrplatform.h
+ /home/phatt/Programming/GameEngine/Engine/src/Platform/OpenGL/OpenGLContext.h \
+ /usr/include/GLFW/glfw3.h

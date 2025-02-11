@@ -134759,32 +134759,32 @@ public:
     void log(level::level_enum lvl, string_view_t msg) { log(source_loc{}, lvl, msg); }
 
     template <typename... Args>
-    void trace(format_string_t<Args...> fmt, Args &&...args) {
+    void trace(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::trace, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
-    void debug(format_string_t<Args...> fmt, Args &&...args) {
+    void debug(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::debug, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
-    void info(format_string_t<Args...> fmt, Args &&...args) {
+    void info(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::info, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
-    void warn(format_string_t<Args...> fmt, Args &&...args) {
+    void warn(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::warn, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
-    void error(format_string_t<Args...> fmt, Args &&...args) {
+    void error(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::err, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
-    void critical(format_string_t<Args...> fmt, Args &&...args) {
+    void critical(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::critical, fmt, std::forward<Args>(args)...);
     }
 # 231 "/home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include/spdlog/logger.h" 3 4

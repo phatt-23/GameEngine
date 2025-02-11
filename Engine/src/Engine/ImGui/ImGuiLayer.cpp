@@ -11,6 +11,8 @@
 
 namespace Engine
 {
+    static bool ImGuiInitialized = false;
+
     ImGuiLayer::ImGuiLayer()
         : Layer("ImGuiLayer") {}
 
@@ -19,15 +21,17 @@ namespace Engine
 
     void ImGuiLayer::OnAttach()
     {
+        if (ImGuiInitialized)
+            return;
+
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
         ImGui::StyleColorsDark();
 
         ImGuiIO& io = ImGui::GetIO();
-        io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
-        io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
-        io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+        io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+        io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
         Application& app = Application::Get();
         auto* window = (GLFWwindow*)app.GetWindow().GetNativeWindow();
@@ -41,11 +45,6 @@ namespace Engine
         ImGui_ImplOpenGL3_Shutdown();
         ImGui_ImplGlfw_Shutdown();
         ImGui::DestroyContext();
-    }
-
-    void ImGuiLayer::OnImGuiRender()
-    {
-
     }
 
     void ImGuiLayer::Begin()
@@ -71,6 +70,12 @@ namespace Engine
             ImGui::RenderPlatformWindowsDefault();
             glfwMakeContextCurrent(currentContext);
         }
+    }
+
+    void ImGuiLayer::OnImGuiRender()
+    {
+        static bool show = true;
+        ImGui::ShowDemoWindow(&show);
     }
 
 }

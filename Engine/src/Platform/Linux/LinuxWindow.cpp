@@ -8,8 +8,9 @@
 #include "Event/ApplicationEvent.h"
 #include "Event/KeyEvent.h"
 #include "Event/MouseEvent.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 
-#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 namespace Engine
 {
@@ -27,13 +28,12 @@ namespace Engine
     }
 
     LinuxWindow::LinuxWindow(const Engine::WindowProps &props)
-        : m_Window(nullptr)
+        : m_Window(nullptr), m_Context(nullptr)
     {
         Init(props);
     }
 
-    LinuxWindow::~LinuxWindow() noexcept
-    = default;
+    LinuxWindow::~LinuxWindow() noexcept = default;
 
     void LinuxWindow::Init(const Engine::WindowProps &props)
     {
@@ -50,9 +50,7 @@ namespace Engine
         {
             int success = glfwInit();
             EG_CORE_ASSERT(success, "Could not initialize GLFW!");
-
             glfwSetErrorCallback(GLFWErrorCallback);
-
             s_GLFWInitialized = true;
         }
 
@@ -60,13 +58,11 @@ namespace Engine
         m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, props.Title.c_str(),
                                     nullptr, nullptr);
 
-        glfwMakeContextCurrent(m_Window);
+        m_Context = new OpenGLContext(m_Window);
+        m_Context->Init();
+
         glfwSetWindowUserPointer(m_Window, &m_Data);
         SetVSync(true);
-
-        // Loading OpenGL with GLAD
-        int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-        EG_CORE_ASSERT(status, "Glad failed to initialize.");
 
 
         // set callbacks
@@ -153,7 +149,7 @@ namespace Engine
     void LinuxWindow::OnUpdate()
     {
         glfwPollEvents();
-        glfwSwapBuffers(m_Window);
+        m_Context->SwapBuffers();
     }
 
     void LinuxWindow::SetVSync(bool enabled)

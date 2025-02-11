@@ -26,6 +26,7 @@ target_precompile_headers(Engine PUBLIC src/Engine/EnginePCH.h)
 
 target_compile_definitions(Engine
         PUBLIC ENGINE_ENABLE_ASSERTS
+        PUBLIC ENGINE_FUNCTION_CURRYING_USE_LAMBDA
         PUBLIC GLFW_INCLUDE_NONE
 )
 

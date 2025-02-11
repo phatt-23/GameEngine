@@ -134765,32 +134765,32 @@ public:
     void log(level::level_enum lvl, string_view_t msg) { log(source_loc{}, lvl, msg); }
 
     template <typename... Args>
-    void trace(format_string_t<Args...> fmt, Args &&...args) {
+    void trace(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::trace, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
-    void debug(format_string_t<Args...> fmt, Args &&...args) {
+    void debug(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::debug, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
-    void info(format_string_t<Args...> fmt, Args &&...args) {
+    void info(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::info, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
-    void warn(format_string_t<Args...> fmt, Args &&...args) {
+    void warn(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::warn, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
-    void error(format_string_t<Args...> fmt, Args &&...args) {
+    void error(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::err, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
-    void critical(format_string_t<Args...> fmt, Args &&...args) {
+    void critical(const format_string_t<Args...> fmt, Args &&...args) {
         log(level::critical, fmt, std::forward<Args>(args)...);
     }
 # 231 "/home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include/spdlog/logger.h" 3 4
@@ -135340,7 +135340,7 @@ namespace Engine
         explicit Layer(std::string debugName = "Layer")
             : m_DebugName(std::move(debugName)) {}
 
-        ~Layer() = default;
+        virtual ~Layer() = default;
 
         virtual void OnEvent(Event& event) {}
         virtual void OnAttach() {}
@@ -135379,6 +135379,489 @@ namespace Engine
 
 }
 # 8 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Application.h" 2
+# 1 "/home/phatt/Programming/GameEngine/Engine/src/Engine/ImGui/ImGuiLayer.h" 1
+
+
+
+       
+
+
+# 1 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Event/MouseEvent.h" 1
+
+
+
+       
+
+
+
+
+namespace Engine
+{
+
+    class MouseMovedEvent : public Event
+    {
+    public:
+        MouseMovedEvent(float x, float y)
+            : m_MouseX(x), m_MouseY(y) {}
+
+        inline float GetX() const { return m_MouseX; }
+        inline float GetY() const { return m_MouseY; }
+
+        std::string ToString() const override
+        {
+            return std::format("MouseMovedEvent: x={}, y={}", m_MouseX, m_MouseY);
+        }
+
+        const char* GetName() const override { return "EventType::MouseMoved"; } static EventType GetStaticType() { return EventType::MouseMoved; } EventType GetEventType() const override { return GetStaticType(); }
+        int GetCategory() const override { return EventCategoryInput | EventCategoryMouse; }
+    private:
+        float m_MouseX, m_MouseY;
+    };
+
+
+    class MouseScrolledEvent : public Event
+    {
+    public:
+        MouseScrolledEvent(float xOffset, float yOffset)
+            : m_XOffset(xOffset), m_YOffset(yOffset) {}
+
+        inline float GetXOffset() const { return m_XOffset; }
+        inline float GetYOffset() const { return m_YOffset; }
+
+        const char* GetName() const override { return "EventType::MouseScrolled"; } static EventType GetStaticType() { return EventType::MouseScrolled; } EventType GetEventType() const override { return GetStaticType(); }
+        int GetCategory() const override { return EventCategoryInput | EventCategoryMouse; }
+    private:
+        float m_XOffset, m_YOffset;
+    };
+
+
+    class MouseButtonEvent : public Event
+    {
+    public:
+        inline int GetMouseButton() const { return m_Button; }
+
+        int GetCategory() const override { return EventCategoryInput | EventCategoryMouse; }
+    protected:
+        MouseButtonEvent(int button)
+            : m_Button(button) {}
+
+        int m_Button;
+    };
+
+
+    class MouseButtonPressedEvent : public MouseButtonEvent
+    {
+    public:
+        MouseButtonPressedEvent(int button)
+            : MouseButtonEvent(button) {}
+
+        std::string ToString() const override
+        {
+            return std::format("MouseButtonPressed: {}", m_Button);
+        }
+
+        const char* GetName() const override { return "EventType::MouseScrolled"; } static EventType GetStaticType() { return EventType::MouseScrolled; } EventType GetEventType() const override { return GetStaticType(); }
+    };
+
+
+    class MouseButtonReleasedEvent : public MouseButtonEvent
+    {
+    public:
+        MouseButtonReleasedEvent(int button)
+            : MouseButtonEvent(button) {}
+
+        std::string ToString() const override
+        {
+            return std::format("MouseButtonReleasedEvent: {}", m_Button);
+        }
+
+        const char* GetName() const override { return "EventType::MouseScrolled"; } static EventType GetStaticType() { return EventType::MouseScrolled; } EventType GetEventType() const override { return GetStaticType(); }
+    };
+
+
+}
+# 8 "/home/phatt/Programming/GameEngine/Engine/src/Engine/ImGui/ImGuiLayer.h" 2
+# 1 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Event/KeyEvent.h" 1
+
+
+
+       
+
+
+
+namespace Engine {
+
+    class KeyEvent : public Event
+    {
+    public:
+        inline int GetKeyCode() const { return m_KeyCode; }
+
+        int GetCategory() const override { return EventCategoryInput | EventCategoryKeyboard; };
+    protected:
+        KeyEvent(int keyCode)
+            : m_KeyCode(keyCode) {}
+
+        int m_KeyCode;
+    };
+
+
+    class KeyPressedEvent : public KeyEvent
+    {
+    public:
+        KeyPressedEvent(int keyCode, int repeatCount)
+            : KeyEvent(keyCode), m_RepeatCount(repeatCount) {}
+
+        inline int GetRepeatCount() const { return m_RepeatCount; }
+
+        std::string ToString() const override
+        {
+            return std::format("KeyPressedEvent: keyCode={}, repeatCount={}",
+                               m_KeyCode, m_RepeatCount);
+        }
+
+        const char* GetName() const override { return "EventType::KeyPressed"; } static EventType GetStaticType() { return EventType::KeyPressed; } EventType GetEventType() const override { return GetStaticType(); }
+    private:
+        int m_RepeatCount;
+    };
+
+
+    class KeyReleasedEvent : public KeyEvent
+    {
+    public:
+        KeyReleasedEvent(int keyCode)
+            : KeyEvent(keyCode) {}
+
+        std::string ToString() const override
+        {
+            return std::format("KeyReleasedEvent: keyCode={}", m_KeyCode);
+        }
+
+        const char* GetName() const override { return "EventType::KeyReleased"; } static EventType GetStaticType() { return EventType::KeyReleased; } EventType GetEventType() const override { return GetStaticType(); }
+    };
+
+
+    class KeyTypedEvent : public KeyEvent
+    {
+    public:
+        KeyTypedEvent(int keyCode)
+            : KeyEvent(keyCode) {}
+
+        std::string ToString() const override
+        {
+            return std::format("KeyTypedEvent: keyCode={}", m_KeyCode);
+        }
+
+        const char* GetName() const override { return "EventType::KeyTyped"; } static EventType GetStaticType() { return EventType::KeyTyped; } EventType GetEventType() const override { return GetStaticType(); }
+    };
+
+}
+# 9 "/home/phatt/Programming/GameEngine/Engine/src/Engine/ImGui/ImGuiLayer.h" 2
+# 1 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Event/ApplicationEvent.h" 1
+
+
+
+       
+
+
+
+
+namespace Engine
+{
+
+    class WindowResizeEvent : public Event
+    {
+    public:
+        WindowResizeEvent(unsigned int width, unsigned int height)
+            : m_Width(width), m_Height(height) {}
+
+        inline unsigned int GetWidth() const { return m_Width; }
+        inline unsigned int GetHeight() const { return m_Height; }
+
+        std::string ToString() const override
+        {
+            return std::format("WindowResizeEvent: width={}, height={}", m_Width, m_Height);
+        }
+
+        const char* GetName() const override { return "EventType::WindowResize"; } static EventType GetStaticType() { return EventType::WindowResize; } EventType GetEventType() const override { return GetStaticType(); };
+        int GetCategory() const override { return EventCategoryApplication; };
+    private:
+        unsigned int m_Width;
+        unsigned int m_Height;
+    };
+
+
+    class WindowCloseEvent : public Event
+    {
+    public:
+        WindowCloseEvent() = default;
+
+        std::string ToString() const override
+        {
+            return "WindowCloseEvent";
+        }
+
+        const char* GetName() const override { return "EventType::WindowClose"; } static EventType GetStaticType() { return EventType::WindowClose; } EventType GetEventType() const override { return GetStaticType(); };
+        int GetCategory() const override { return EventCategoryApplication; };
+    };
+
+
+    class AppTickEvent : public Event
+    {
+    public:
+        AppTickEvent() = default;
+
+        const char* GetName() const override { return "EventType::AppTick"; } static EventType GetStaticType() { return EventType::AppTick; } EventType GetEventType() const override { return GetStaticType(); };
+        int GetCategory() const override { return EventCategoryApplication; };
+    };
+
+
+    class AppUpdateEvent : public Event
+    {
+    public:
+        AppUpdateEvent() = default;
+
+        const char* GetName() const override { return "EventType::AppUpdate"; } static EventType GetStaticType() { return EventType::AppUpdate; } EventType GetEventType() const override { return GetStaticType(); };
+        int GetCategory() const override { return EventCategoryApplication; };
+    };
+
+
+    class AppRenderEvent : public Event
+    {
+    public:
+        AppRenderEvent() = default;
+
+        const char* GetName() const override { return "EventType::AppRender"; } static EventType GetStaticType() { return EventType::AppRender; } EventType GetEventType() const override { return GetStaticType(); };
+        int GetCategory() const override { return EventCategoryApplication; };
+    };
+
+}
+# 10 "/home/phatt/Programming/GameEngine/Engine/src/Engine/ImGui/ImGuiLayer.h" 2
+
+namespace Engine
+{
+    class ImGuiLayer : public Layer {
+    public:
+        ImGuiLayer();
+        ~ImGuiLayer();
+
+        void OnAttach() override;
+        void OnDetach() override;
+        void OnImGuiRender() override;
+
+        void Begin();
+        void End();
+
+    private:
+        float m_Time = 0.f;
+    };
+}
+# 9 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Application.h" 2
+# 1 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/VertexArray.h" 1
+
+
+
+       
+
+
+
+# 1 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/Buffer.h" 1
+
+
+
+       
+
+
+namespace Engine
+{
+
+
+
+
+    enum class ShaderDataType
+    {
+        None = 0,
+        Bool,
+        Float, Float2, Float3, Float4,
+        Int, Int2, Int3, Int4,
+        Mat3, Mat4,
+    };
+
+    static unsigned int SizeofShaderDataType(ShaderDataType type)
+    {
+        switch (type)
+        {
+            case ShaderDataType::Bool: return 1;
+            case ShaderDataType::Float: return 4;
+            case ShaderDataType::Float2: return 4 * 2;
+            case ShaderDataType::Float3: return 4 * 3;
+            case ShaderDataType::Float4: return 4 * 4;
+            case ShaderDataType::Int: return 4;
+            case ShaderDataType::Int2: return 4 * 2;
+            case ShaderDataType::Int3: return 4 * 3;
+            case ShaderDataType::Int4: return 4 * 4;
+            case ShaderDataType::Mat3: return 3 * 3 * 4;
+            case ShaderDataType::Mat4: return 4 * 4 * 4;
+            case ShaderDataType::None:
+                break;
+        }
+
+        { if (!(false)) { ::Engine::Log::GetCoreLogger()->error("Assertion failed: {0}", "Unknown ShaderDataType!"); __builtin_trap(); } };
+        return 0;
+    }
+
+    struct BufferElement
+    {
+        std::string Name;
+        ShaderDataType Type;
+        unsigned int Size;
+        unsigned int Offset;
+        bool Normalized;
+
+        BufferElement(ShaderDataType type, std::string&& name, bool normalized = false)
+            : Name(name), Type(type), Size(SizeofShaderDataType(type)), Offset(0), Normalized(normalized) {}
+
+        int GetElementCount() const {
+            switch (Type)
+            {
+                case ShaderDataType::Int:
+                case ShaderDataType::Bool:
+                case ShaderDataType::Float: return 1;
+                case ShaderDataType::Int2:
+                case ShaderDataType::Float2: return 2;
+                case ShaderDataType::Int3:
+                case ShaderDataType::Float3: return 3;
+                case ShaderDataType::Int4:
+                case ShaderDataType::Float4: return 4;
+                case ShaderDataType::Mat3: return 3 * 3;
+                case ShaderDataType::Mat4: return 4 * 4;
+                case ShaderDataType::None: break;
+            }
+            { if (!(false)) { ::Engine::Log::GetCoreLogger()->error("Assertion failed: {0}", "Unknown type!"); __builtin_trap(); } };
+            return 0;
+        }
+    };
+
+    class BufferLayout
+    {
+    public:
+        BufferLayout();
+        BufferLayout(std::initializer_list<BufferElement>&& elements);
+        ~BufferLayout();
+
+        unsigned int GetStride() const { return m_Stride; }
+        const std::vector<BufferElement> GetElements() const { return m_Elements; }
+
+        std::vector<BufferElement>::const_iterator begin() const { return m_Elements.begin(); }
+        std::vector<BufferElement>::const_iterator end() const { return m_Elements.end(); }
+
+    private:
+        void CalculateOffsetsAndStride();
+
+    private:
+        std::vector<BufferElement> m_Elements;
+        unsigned int m_Stride;
+    };
+
+
+
+
+
+    class VertexBuffer
+    {
+    public:
+        virtual ~VertexBuffer() = default;
+
+        virtual void Bind() const = 0;
+        virtual void Unbind() const = 0;
+
+        virtual const BufferLayout& GetLayout() const = 0;
+        virtual void SetLayout(BufferLayout&& layout) = 0;
+
+        static VertexBuffer* Create(float* vertices, unsigned int count);
+    };
+
+
+
+
+
+    class IndexBuffer
+    {
+    public:
+        virtual ~IndexBuffer() = default;
+
+        virtual void Bind() const = 0;
+        virtual void Unbind() const = 0;
+
+        virtual unsigned int GetCount() const = 0;
+
+        static IndexBuffer* Create(unsigned int* indices, unsigned int count);
+    };
+
+}
+# 9 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/VertexArray.h" 2
+
+namespace Engine
+{
+
+    class VertexArray
+    {
+    public:
+        VertexArray() = default;
+        virtual ~VertexArray() = default;
+
+        virtual void Bind() const = 0;
+        virtual void Unbind() const = 0;
+
+        virtual void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer) = 0;
+        virtual void SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer) = 0;
+
+        virtual const std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffers() const = 0;
+        virtual const std::shared_ptr<IndexBuffer>& GetIndexBuffer() const = 0;
+
+        static VertexArray* Create();
+    };
+
+}
+# 10 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Application.h" 2
+# 1 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/Shader.h" 1
+
+
+
+       
+
+namespace Engine
+{
+    enum class ShaderType
+    {
+        None = 0,
+        VertexShader,
+        FragmentShader,
+    };
+
+    class Shader
+    {
+    public:
+        Shader(const std::string& vertexSource, const std::string& fragmentSource);
+        ~Shader();
+
+        void Bind() const;
+        void Unbind() const;
+
+    private:
+        static unsigned int CompileSource(ShaderType type, const std::string& source);
+
+    private:
+        unsigned int m_RendererID;
+    };
+
+    struct ShaderSource
+    {
+        std::string VertexShader;
+        std::string FragmentShader;
+    };
+
+}
+# 11 "/home/phatt/Programming/GameEngine/Engine/src/Engine/Application.h" 2
 
 namespace Engine
 {
@@ -135397,15 +135880,19 @@ namespace Engine
 
         inline Window& GetWindow() { return *m_Window; }
 
-        static Application& Get() { return *s_Instance; }
+        static Application& Get();
     private:
         bool OnWindowClose(Event& event);
+        bool OnWindowResize(WindowResizeEvent& event) const;
 
     private:
-        std::unique_ptr<Window> m_Window;
         bool m_Running = true;
         LayerStack m_LayerStack;
+        std::unique_ptr<Window> m_Window;
+        ImGuiLayer* m_ImGuiLayer;
 
+        std::shared_ptr<VertexArray> m_VertexArray;
+        std::shared_ptr<Shader> m_Shader;
     };
 
 

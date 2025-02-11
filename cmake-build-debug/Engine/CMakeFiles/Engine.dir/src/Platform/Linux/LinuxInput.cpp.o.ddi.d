@@ -264,4 +264,11 @@ Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o.ddi: \
  /home/phatt/Programming/GameEngine/Engine/src/Engine/Event/Event.h \
  /home/phatt/Programming/GameEngine/Engine/src/Engine/LayerStack.h \
  /home/phatt/Programming/GameEngine/Engine/src/Engine/Layer.h \
+ /home/phatt/Programming/GameEngine/Engine/src/Engine/ImGui/ImGuiLayer.h \
+ /home/phatt/Programming/GameEngine/Engine/src/Engine/Event/MouseEvent.h \
+ /home/phatt/Programming/GameEngine/Engine/src/Engine/Event/KeyEvent.h \
+ /home/phatt/Programming/GameEngine/Engine/src/Engine/Event/ApplicationEvent.h \
+ /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/VertexArray.h \
+ /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/Buffer.h \
+ /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/Shader.h \
  /usr/include/GLFW/glfw3.h

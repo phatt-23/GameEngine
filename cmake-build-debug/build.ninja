@@ -78,7 +78,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 build cmake_object_order_depends_target_Engine: phony || cmake_object_order_depends_target_ImGui cmake_object_order_depends_target_glad
 
 build Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch: CXX_COMPILER__Engine_unscanned_Debug /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.cxx | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx || cmake_object_order_depends_target_Engine
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -x c++-header -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
   INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
@@ -86,7 +86,7 @@ build Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch: CXX_COMPILER__Engine_unsca
   OBJECT_FILE_DIR = Engine/CMakeFiles/Engine.dir
 
 build Engine/CMakeFiles/Engine.dir/src/Engine/Application.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Application.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Application.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Application.cpp.o.ddi
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -95,7 +95,7 @@ build Engine/CMakeFiles/Engine.dir/src/Engine/Application.cpp.o.ddi: CXX_SCAN__E
   PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Application.cpp.o.ddi.i
 
 build Engine/CMakeFiles/Engine.dir/src/Engine/Application.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Application.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Engine/Application.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Application.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Application.cpp.o.modmap
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -105,7 +105,7 @@ build Engine/CMakeFiles/Engine.dir/src/Engine/Application.cpp.o: CXX_COMPILER__E
   dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
 
 build Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiBuild.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/ImGui/ImGuiBuild.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiBuild.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiBuild.cpp.o.ddi
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -114,7 +114,7 @@ build Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiBuild.cpp.o.ddi: CXX_SC
   PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiBuild.cpp.o.ddi.i
 
 build Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiBuild.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/ImGui/ImGuiBuild.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiBuild.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiBuild.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiBuild.cpp.o.modmap
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -124,7 +124,7 @@ build Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiBuild.cpp.o: CXX_COMPIL
   dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
 
 build Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/ImGui/ImGuiLayer.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o.ddi
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -133,7 +133,7 @@ build Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o.ddi: CXX_SC
   PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o.ddi.i
 
 build Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/ImGui/ImGuiLayer.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o.modmap
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -143,7 +143,7 @@ build Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o: CXX_COMPIL
   dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
 
 build Engine/CMakeFiles/Engine.dir/src/Engine/Input.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Input.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Input.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Input.cpp.o.ddi
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -152,7 +152,7 @@ build Engine/CMakeFiles/Engine.dir/src/Engine/Input.cpp.o.ddi: CXX_SCAN__Engine_
   PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Input.cpp.o.ddi.i
 
 build Engine/CMakeFiles/Engine.dir/src/Engine/Input.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Input.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Engine/Input.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Input.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Input.cpp.o.modmap
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -162,7 +162,7 @@ build Engine/CMakeFiles/Engine.dir/src/Engine/Input.cpp.o: CXX_COMPILER__Engine_
   dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
 
 build Engine/CMakeFiles/Engine.dir/src/Engine/Layer.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Layer.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Layer.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Layer.cpp.o.ddi
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -171,7 +171,7 @@ build Engine/CMakeFiles/Engine.dir/src/Engine/Layer.cpp.o.ddi: CXX_SCAN__Engine_
   PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Layer.cpp.o.ddi.i
 
 build Engine/CMakeFiles/Engine.dir/src/Engine/Layer.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Layer.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Engine/Layer.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Layer.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Layer.cpp.o.modmap
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -181,7 +181,7 @@ build Engine/CMakeFiles/Engine.dir/src/Engine/Layer.cpp.o: CXX_COMPILER__Engine_
   dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
 
 build Engine/CMakeFiles/Engine.dir/src/Engine/LayerStack.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/LayerStack.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/LayerStack.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/LayerStack.cpp.o.ddi
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -190,7 +190,7 @@ build Engine/CMakeFiles/Engine.dir/src/Engine/LayerStack.cpp.o.ddi: CXX_SCAN__En
   PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/LayerStack.cpp.o.ddi.i
 
 build Engine/CMakeFiles/Engine.dir/src/Engine/LayerStack.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/LayerStack.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Engine/LayerStack.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/LayerStack.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/LayerStack.cpp.o.modmap
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -200,7 +200,7 @@ build Engine/CMakeFiles/Engine.dir/src/Engine/LayerStack.cpp.o: CXX_COMPILER__En
   dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
 
 build Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Log.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o.ddi
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -209,7 +209,7 @@ build Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o.ddi: CXX_SCAN__Engine_De
   PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o.ddi.i
 
 build Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Log.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o.modmap
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -218,8 +218,122 @@ build Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o: CXX_COMPILER__Engine_sc
   OBJECT_FILE_DIR = Engine/CMakeFiles/Engine.dir/src/Engine
   dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
 
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Buffer.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/Buffer.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Buffer.cpp.o.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Buffer.cpp.o.ddi
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJ_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Buffer.cpp.o
+  PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Buffer.cpp.o.ddi.i
+
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Buffer.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/Buffer.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Buffer.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Buffer.cpp.o.d
+  DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Buffer.cpp.o.modmap
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJECT_DIR = Engine/CMakeFiles/Engine.dir
+  OBJECT_FILE_DIR = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer
+  dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
+
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RenderCommand.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/RenderCommand.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RenderCommand.cpp.o.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RenderCommand.cpp.o.ddi
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJ_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RenderCommand.cpp.o
+  PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RenderCommand.cpp.o.ddi.i
+
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RenderCommand.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/RenderCommand.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RenderCommand.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RenderCommand.cpp.o.d
+  DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RenderCommand.cpp.o.modmap
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJECT_DIR = Engine/CMakeFiles/Engine.dir
+  OBJECT_FILE_DIR = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer
+  dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
+
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Renderer.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/Renderer.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Renderer.cpp.o.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Renderer.cpp.o.ddi
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJ_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Renderer.cpp.o
+  PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Renderer.cpp.o.ddi.i
+
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Renderer.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/Renderer.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Renderer.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Renderer.cpp.o.d
+  DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Renderer.cpp.o.modmap
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJECT_DIR = Engine/CMakeFiles/Engine.dir
+  OBJECT_FILE_DIR = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer
+  dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
+
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RendererAPI.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/RendererAPI.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RendererAPI.cpp.o.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RendererAPI.cpp.o.ddi
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJ_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RendererAPI.cpp.o
+  PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RendererAPI.cpp.o.ddi.i
+
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RendererAPI.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/RendererAPI.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RendererAPI.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RendererAPI.cpp.o.d
+  DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RendererAPI.cpp.o.modmap
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJECT_DIR = Engine/CMakeFiles/Engine.dir
+  OBJECT_FILE_DIR = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer
+  dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
+
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Shader.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/Shader.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Shader.cpp.o.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Shader.cpp.o.ddi
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJ_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Shader.cpp.o
+  PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Shader.cpp.o.ddi.i
+
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Shader.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/Shader.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Shader.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Shader.cpp.o.d
+  DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Shader.cpp.o.modmap
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJECT_DIR = Engine/CMakeFiles/Engine.dir
+  OBJECT_FILE_DIR = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer
+  dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
+
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/VertexArray.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/VertexArray.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/VertexArray.cpp.o.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/VertexArray.cpp.o.ddi
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJ_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/VertexArray.cpp.o
+  PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/VertexArray.cpp.o.ddi.i
+
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/VertexArray.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Engine/Renderer/VertexArray.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/VertexArray.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/VertexArray.cpp.o.d
+  DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/VertexArray.cpp.o.modmap
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJECT_DIR = Engine/CMakeFiles/Engine.dir
+  OBJECT_FILE_DIR = Engine/CMakeFiles/Engine.dir/src/Engine/Renderer
+  dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
+
 build Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Platform/Linux/LinuxInput.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o.ddi
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -228,7 +342,7 @@ build Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o.ddi: CXX_
   PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o.ddi.i
 
 build Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Platform/Linux/LinuxInput.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o.modmap
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -238,7 +352,7 @@ build Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o: CXX_COMP
   dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
 
 build Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Platform/Linux/LinuxWindow.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o.ddi
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -247,7 +361,7 @@ build Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o.ddi: CXX
   PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o.ddi.i
 
 build Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Platform/Linux/LinuxWindow.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o.modmap
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
@@ -256,7 +370,83 @@ build Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o: CXX_COM
   OBJECT_FILE_DIR = Engine/CMakeFiles/Engine.dir/src/Platform/Linux
   dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
 
-build Engine/CMakeFiles/Engine.dir/CXX.dd | /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/CXXModules.json Engine/CMakeFiles/Engine.dir/src/Engine/Application.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiBuild.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/Input.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/Layer.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/LayerStack.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o.modmap: CXX_DYNDEP__Engine_Debug Engine/CMakeFiles/Engine.dir/src/Engine/Application.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiBuild.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/Input.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/Layer.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/LayerStack.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o.ddi | /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/CXXDependInfo.json
+build Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLBuffer.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Platform/OpenGL/OpenGLBuffer.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLBuffer.cpp.o.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLBuffer.cpp.o.ddi
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJ_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLBuffer.cpp.o
+  PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLBuffer.cpp.o.ddi.i
+
+build Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLBuffer.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Platform/OpenGL/OpenGLBuffer.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLBuffer.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLBuffer.cpp.o.d
+  DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLBuffer.cpp.o.modmap
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJECT_DIR = Engine/CMakeFiles/Engine.dir
+  OBJECT_FILE_DIR = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL
+  dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
+
+build Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLContext.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Platform/OpenGL/OpenGLContext.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLContext.cpp.o.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLContext.cpp.o.ddi
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJ_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLContext.cpp.o
+  PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLContext.cpp.o.ddi.i
+
+build Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLContext.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Platform/OpenGL/OpenGLContext.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLContext.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLContext.cpp.o.d
+  DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLContext.cpp.o.modmap
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJECT_DIR = Engine/CMakeFiles/Engine.dir
+  OBJECT_FILE_DIR = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL
+  dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
+
+build Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLRendererAPI.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Platform/OpenGL/OpenGLRendererAPI.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLRendererAPI.cpp.o.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLRendererAPI.cpp.o.ddi
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJ_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLRendererAPI.cpp.o
+  PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLRendererAPI.cpp.o.ddi.i
+
+build Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLRendererAPI.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Platform/OpenGL/OpenGLRendererAPI.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLRendererAPI.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLRendererAPI.cpp.o.d
+  DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLRendererAPI.cpp.o.modmap
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJECT_DIR = Engine/CMakeFiles/Engine.dir
+  OBJECT_FILE_DIR = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL
+  dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
+
+build Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLVertexArray.cpp.o.ddi: CXX_SCAN__Engine_Debug /home/phatt/Programming/GameEngine/Engine/src/Platform/OpenGL/OpenGLVertexArray.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Engine
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLVertexArray.cpp.o.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLVertexArray.cpp.o.ddi
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJ_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLVertexArray.cpp.o
+  PREPROCESSED_OUTPUT_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLVertexArray.cpp.o.ddi.i
+
+build Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLVertexArray.cpp.o: CXX_COMPILER__Engine_scanned_Debug /home/phatt/Programming/GameEngine/Engine/src/Platform/OpenGL/OpenGLVertexArray.cpp | Engine/CMakeFiles/Engine.dir/cmake_pch.hxx Engine/CMakeFiles/Engine.dir/cmake_pch.hxx.gch Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLVertexArray.cpp.o.modmap || cmake_object_order_depends_target_Engine Engine/CMakeFiles/Engine.dir/CXX.dd
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLVertexArray.cpp.o.d
+  DYNDEP_MODULE_MAP_FILE = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLVertexArray.cpp.o.modmap
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/cmake_pch.hxx
+  INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
+  OBJECT_DIR = Engine/CMakeFiles/Engine.dir
+  OBJECT_FILE_DIR = Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL
+  dyndep = Engine/CMakeFiles/Engine.dir/CXX.dd
+
+build Engine/CMakeFiles/Engine.dir/CXX.dd | /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/CXXModules.json Engine/CMakeFiles/Engine.dir/src/Engine/Application.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiBuild.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/Input.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/Layer.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/LayerStack.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Buffer.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RenderCommand.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Renderer.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RendererAPI.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Shader.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/VertexArray.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLBuffer.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLContext.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLRendererAPI.cpp.o.modmap Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLVertexArray.cpp.o.modmap: CXX_DYNDEP__Engine_Debug Engine/CMakeFiles/Engine.dir/src/Engine/Application.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiBuild.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/Input.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/Layer.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/LayerStack.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Buffer.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RenderCommand.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Renderer.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RendererAPI.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Shader.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/VertexArray.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLBuffer.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLContext.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLRendererAPI.cpp.o.ddi Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLVertexArray.cpp.o.ddi | /home/phatt/Programming/GameEngine/cmake-build-debug/Engine/CMakeFiles/Engine.dir/CXXDependInfo.json
 
 
 # =============================================================================
@@ -266,7 +456,7 @@ build Engine/CMakeFiles/Engine.dir/CXX.dd | /home/phatt/Programming/GameEngine/c
 #############################################
 # Link the static library Engine/libEngine.a
 
-build Engine/libEngine.a: CXX_STATIC_LIBRARY_LINKER__Engine_Debug Engine/CMakeFiles/Engine.dir/src/Engine/Application.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiBuild.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/Input.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/Layer.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/LayerStack.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o || Engine/vendor/glad/libglad.a Engine/vendor/imgui/libImGui.a
+build Engine/libEngine.a: CXX_STATIC_LIBRARY_LINKER__Engine_Debug Engine/CMakeFiles/Engine.dir/src/Engine/Application.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiBuild.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/ImGui/ImGuiLayer.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/Input.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/Layer.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/LayerStack.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Buffer.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RenderCommand.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Renderer.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RendererAPI.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Shader.cpp.o Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/VertexArray.cpp.o Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLBuffer.cpp.o Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLContext.cpp.o Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLRendererAPI.cpp.o Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLVertexArray.cpp.o || Engine/vendor/glad/libglad.a Engine/vendor/imgui/libImGui.a
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = Engine/CMakeFiles/Engine.dir
   POST_BUILD = :
@@ -502,7 +692,7 @@ build Engine/vendor/imgui/rebuild_cache: phony Engine/vendor/imgui/CMakeFiles/re
 build cmake_object_order_depends_target_Sandbox: phony || cmake_object_order_depends_target_Engine cmake_object_order_depends_target_ImGui cmake_object_order_depends_target_glad
 
 build Sandbox/CMakeFiles/Sandbox.dir/cmake_pch.hxx.gch: CXX_COMPILER__Sandbox_unscanned_Debug /home/phatt/Programming/GameEngine/cmake-build-debug/Sandbox/CMakeFiles/Sandbox.dir/cmake_pch.hxx.cxx | Sandbox/CMakeFiles/Sandbox.dir/cmake_pch.hxx || cmake_object_order_depends_target_Sandbox
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Sandbox/CMakeFiles/Sandbox.dir/cmake_pch.hxx.gch.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -x c++-header -include /home/phatt/Programming/GameEngine/cmake-build-debug/Sandbox/CMakeFiles/Sandbox.dir/cmake_pch.hxx
   INCLUDES = -I/home/phatt/Programming/GameEngine/Engine -I/home/phatt/Programming/GameEngine/Engine/src -I/home/phatt/Programming/GameEngine/Engine/src/Engine -I/home/phatt/Programming/GameEngine/Engine/vendor -I/home/phatt/Programming/GameEngine/Engine/vendor/imgui -I/home/phatt/Programming/GameEngine/Engine/vendor/glad/include -isystem /home/phatt/.vcpkg-clion/vcpkg/installed/x64-linux/include
@@ -510,7 +700,7 @@ build Sandbox/CMakeFiles/Sandbox.dir/cmake_pch.hxx.gch: CXX_COMPILER__Sandbox_un
   OBJECT_FILE_DIR = Sandbox/CMakeFiles/Sandbox.dir
 
 build Sandbox/CMakeFiles/Sandbox.dir/src/SandboxApp.cpp.o.ddi: CXX_SCAN__Sandbox_Debug /home/phatt/Programming/GameEngine/Sandbox/src/SandboxApp.cpp | Sandbox/CMakeFiles/Sandbox.dir/cmake_pch.hxx Sandbox/CMakeFiles/Sandbox.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_Sandbox
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Sandbox/CMakeFiles/Sandbox.dir/src/SandboxApp.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = Sandbox/CMakeFiles/Sandbox.dir/src/SandboxApp.cpp.o.ddi
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Sandbox/CMakeFiles/Sandbox.dir/cmake_pch.hxx
@@ -519,7 +709,7 @@ build Sandbox/CMakeFiles/Sandbox.dir/src/SandboxApp.cpp.o.ddi: CXX_SCAN__Sandbox
   PREPROCESSED_OUTPUT_FILE = Sandbox/CMakeFiles/Sandbox.dir/src/SandboxApp.cpp.o.ddi.i
 
 build Sandbox/CMakeFiles/Sandbox.dir/src/SandboxApp.cpp.o: CXX_COMPILER__Sandbox_scanned_Debug /home/phatt/Programming/GameEngine/Sandbox/src/SandboxApp.cpp | Sandbox/CMakeFiles/Sandbox.dir/cmake_pch.hxx Sandbox/CMakeFiles/Sandbox.dir/cmake_pch.hxx.gch Sandbox/CMakeFiles/Sandbox.dir/src/SandboxApp.cpp.o.modmap || cmake_object_order_depends_target_Sandbox Sandbox/CMakeFiles/Sandbox.dir/CXX.dd
-  DEFINES = -DENGINE_ENABLE_ASSERTS -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+  DEFINES = -DENGINE_ENABLE_ASSERTS -DENGINE_FUNCTION_CURRYING_USE_LAMBDA -DGLFW_INCLUDE_NONE -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
   DEP_FILE = Sandbox/CMakeFiles/Sandbox.dir/src/SandboxApp.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = Sandbox/CMakeFiles/Sandbox.dir/src/SandboxApp.cpp.o.modmap
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include /home/phatt/Programming/GameEngine/cmake-build-debug/Sandbox/CMakeFiles/Sandbox.dir/cmake_pch.hxx

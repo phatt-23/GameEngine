@@ -5,6 +5,9 @@
 
 #include "Window.h"
 #include "LayerStack.h"
+#include "ImGui/ImGuiLayer.h"
+#include "Renderer/VertexArray.h"
+#include "Renderer/Shader.h"
 
 namespace Engine
 {
@@ -23,15 +26,19 @@ namespace Engine
 
         inline Window& GetWindow() { return *m_Window; }
 
-        static Application& Get() { return *s_Instance; }
+        static Application& Get();
     private:
         bool OnWindowClose(Event& event);
+        bool OnWindowResize(WindowResizeEvent& event) const;
 
     private:
-        std::unique_ptr<Window> m_Window;
         bool m_Running = true;
         LayerStack m_LayerStack;
+        std::unique_ptr<Window> m_Window;
+        ImGuiLayer* m_ImGuiLayer;
 
+        std::shared_ptr<VertexArray> m_VertexArray;
+        std::shared_ptr<Shader> m_Shader;
     };
 
     // DEFINED IN CLIENT

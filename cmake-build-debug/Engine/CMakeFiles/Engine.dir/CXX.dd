@@ -13,7 +13,27 @@ build Engine/CMakeFiles/Engine.dir/src/Engine/LayerStack.cpp.o: dyndep
 
 build Engine/CMakeFiles/Engine.dir/src/Engine/Log.cpp.o: dyndep
 
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Buffer.cpp.o: dyndep
+
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RenderCommand.cpp.o: dyndep
+
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Renderer.cpp.o: dyndep
+
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/RendererAPI.cpp.o: dyndep
+
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/Shader.cpp.o: dyndep
+
+build Engine/CMakeFiles/Engine.dir/src/Engine/Renderer/VertexArray.cpp.o: dyndep
+
 build Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxInput.cpp.o: dyndep
 
 build Engine/CMakeFiles/Engine.dir/src/Platform/Linux/LinuxWindow.cpp.o: dyndep
+
+build Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLBuffer.cpp.o: dyndep
+
+build Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLContext.cpp.o: dyndep
+
+build Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLRendererAPI.cpp.o: dyndep
+
+build Engine/CMakeFiles/Engine.dir/src/Platform/OpenGL/OpenGLVertexArray.cpp.o: dyndep
 
