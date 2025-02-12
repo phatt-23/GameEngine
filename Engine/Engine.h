@@ -15,6 +15,7 @@
 #include "Engine/Renderer/VertexArray.h"
 #include "Engine/Renderer/Camera.h"
 #include "Engine/Core/Timestep.h"
+#include "Engine/Renderer/Texture.h"
 
 ///////// Entry point ////////
 #include "src/Engine/EntryPoint.h"

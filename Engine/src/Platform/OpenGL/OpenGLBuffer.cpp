@@ -5,6 +5,7 @@
 #include "OpenGLBuffer.h"
 
 #include <glad/glad.h>
+#include "OpenGLCore.h"
 
 namespace Engine
 {
@@ -15,25 +16,25 @@ namespace Engine
     OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, unsigned int count)
         : m_RendererID(0)
     {
-        glCreateBuffers(1, &m_RendererID);
-        glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
-        glBufferData(GL_ARRAY_BUFFER, (GLsizei)count * sizeof(float), vertices, GL_STATIC_DRAW);
-        // glBindBuffer(GL_ARRAY_BUFFER, 0);
+        EG_OPENGL_CALL(glCreateBuffers(1, &m_RendererID));
+        EG_OPENGL_CALL(glBindBuffer(GL_ARRAY_BUFFER, m_RendererID));
+        EG_OPENGL_CALL(glBufferData(GL_ARRAY_BUFFER, (GLsizei)count * sizeof(float), vertices, GL_STATIC_DRAW));
+        // EG_OPENGL_CALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
     }
 
     OpenGLVertexBuffer::~OpenGLVertexBuffer()
     {
-        glDeleteBuffers(1, &m_RendererID);
+        EG_OPENGL_CALL(glDeleteBuffers(1, &m_RendererID));
     }
 
     void OpenGLVertexBuffer::Bind() const
     {
-        glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
+        EG_OPENGL_CALL(glBindBuffer(GL_ARRAY_BUFFER, m_RendererID));
     }
 
     void OpenGLVertexBuffer::Unbind() const
     {
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        EG_OPENGL_CALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
     }
 
 
@@ -44,25 +45,25 @@ namespace Engine
     OpenGLIndexBuffer::OpenGLIndexBuffer(unsigned int* indices, unsigned int count)
         : m_RendererID(), m_Count(count)
     {
-        glCreateBuffers(1, &m_RendererID);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, (GLsizei)m_Count * sizeof(unsigned int), indices, GL_STATIC_DRAW);
+        EG_OPENGL_CALL(glCreateBuffers(1, &m_RendererID));
+        EG_OPENGL_CALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID));
+        EG_OPENGL_CALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, (GLsizei)m_Count * sizeof(unsigned int), indices, GL_STATIC_DRAW));
         // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
 
     OpenGLIndexBuffer::~OpenGLIndexBuffer()
     {
-        glDeleteBuffers(1, &m_RendererID);
+        EG_OPENGL_CALL(glDeleteBuffers(1, &m_RendererID));
     }
 
     void OpenGLIndexBuffer::Bind() const
     {
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID);
+        EG_OPENGL_CALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID));
     }
 
     void OpenGLIndexBuffer::Unbind() const
     {
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        EG_OPENGL_CALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
     }
 
     unsigned int OpenGLIndexBuffer::GetCount() const {

@@ -27,9 +27,9 @@ namespace Engine
         EG_CORE_ASSERT(status, "Glad failed to initialize.");
 
         EG_CORE_INFO("OpenGL Info:");
-        EG_CORE_INFO("    Vendor: {}", (char*)glGetString(GL_VENDOR));
-        EG_CORE_INFO("    Renderer: {}", (char*)glGetString(GL_RENDERER));
-        EG_CORE_INFO("    Version: {}", (char*)glGetString(GL_VERSION));
+        EG_CORE_INFO("  Vendor: {}", (char*)glGetString(GL_VENDOR));
+        EG_CORE_INFO("  Renderer: {}", (char*)glGetString(GL_RENDERER));
+        EG_CORE_INFO("  Version: {}", (char*)glGetString(GL_VERSION));
     }
 
     void OpenGLContext::SwapBuffers()

@@ -4,6 +4,7 @@
 
 #include "OpenGLVertexArray.h"
 #include <glad/glad.h>
+#include "OpenGLCore.h"
 
 namespace Engine
 {
@@ -32,8 +33,8 @@ namespace Engine
 
     OpenGLVertexArray::OpenGLVertexArray()
     {
-        glCreateVertexArrays(1, &m_RendererID);
-        // glBindVertexArray(0);
+        EG_OPENGL_CALL(glCreateVertexArrays(1, &m_RendererID));
+        // EG_OPENGL_CALL(glBindVertexArray(0));
     }
 
     OpenGLVertexArray::~OpenGLVertexArray()
@@ -42,19 +43,19 @@ namespace Engine
 
     void OpenGLVertexArray::Bind() const
     {
-        glBindVertexArray(m_RendererID);
+        EG_OPENGL_CALL(glBindVertexArray(m_RendererID));
     }
 
     void OpenGLVertexArray::Unbind() const
     {
-        glBindVertexArray(0);
+        EG_OPENGL_CALL(glBindVertexArray(0));
     }
 
     void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer> &vertexBuffer)
     {
         EG_CORE_ASSERT(!vertexBuffer->GetLayout().GetElements().empty(), "Vertex buffer doesn't have a layout.");
 
-        glBindVertexArray(m_RendererID);
+        EG_OPENGL_CALL(glBindVertexArray(m_RendererID));
         vertexBuffer->Bind();
 
         const auto& layout = vertexBuffer->GetLayout();
@@ -62,22 +63,23 @@ namespace Engine
         int index = 0;
         for (const auto& element : layout)
         {
-            glEnableVertexAttribArray(index);
-            glVertexAttribPointer(index,
+            EG_OPENGL_CALL(glEnableVertexAttribArray(index));
+            EG_OPENGL_CALL(glVertexAttribPointer(index,
                     element.GetElementCount(),
                     ShaderDataTypeToOpenGLType(element.Type),
                     element.Normalized ? GL_TRUE : GL_FALSE,
                     (GLsizei)layout.GetStride(),
-                    reinterpret_cast<const void*>(element.Offset));
+                    reinterpret_cast<const void*>(element.Offset)));
             index++;
         }
 
         m_VertexBuffers.push_back(vertexBuffer);
-        glBindVertexArray(0);
+        EG_OPENGL_CALL(glBindVertexArray(0));
+        vertexBuffer->Unbind();
     }
 
     void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer> &indexBuffer) {
-        glBindVertexArray(m_RendererID);
+        EG_OPENGL_CALL(glBindVertexArray(m_RendererID));
         indexBuffer->Bind();
         m_IndexBuffer = indexBuffer;
     }

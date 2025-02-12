@@ -41,12 +41,12 @@ namespace Engine
     //// VertexBuffer //////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    VertexBuffer *VertexBuffer::Create(float *vertices, unsigned int count)
+    Ref<VertexBuffer> VertexBuffer::Create(float *vertices, unsigned int count)
     {
         switch (Renderer::GetAPI())
         {
             case RendererAPI::API::None:   EG_CORE_ASSERT(false, "RendererAPI::None not supported!");
-            case RendererAPI::API::OpenGL: return new OpenGLVertexBuffer(vertices, count);
+            case RendererAPI::API::OpenGL: return std::make_shared<OpenGLVertexBuffer>(vertices, count);
         }
 
         EG_CORE_ASSERT(false, "Unknown renderer API!");
@@ -57,12 +57,12 @@ namespace Engine
     //// IndexBuffer ///////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    IndexBuffer *IndexBuffer::Create(unsigned int* indices, unsigned int count)
+    Ref<IndexBuffer> IndexBuffer::Create(unsigned int* indices, unsigned int count)
     {
         switch (Renderer::GetAPI())
         {
             case RendererAPI::API::None:   EG_CORE_ASSERT(false, "RendererAPI::None not supported!");
-            case RendererAPI::API::OpenGL: return new OpenGLIndexBuffer(indices, count);
+            case RendererAPI::API::OpenGL: return std::make_shared<OpenGLIndexBuffer>(indices, count);
         }
 
         EG_CORE_ASSERT(false, "Unknown renderer API!");

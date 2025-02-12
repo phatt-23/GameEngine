@@ -21,3 +21,6 @@
 #include <unordered_set>
 #include <iterator>
 
+#include <source_location>
+#include <stacktrace>
+#include <sstream>

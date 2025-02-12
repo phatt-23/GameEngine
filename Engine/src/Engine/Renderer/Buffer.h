@@ -110,7 +110,7 @@ namespace Engine
         virtual const BufferLayout& GetLayout() const = 0;
         virtual void SetLayout(BufferLayout&& layout) = 0;
 
-        static VertexBuffer* Create(float* vertices, unsigned int count);
+        static Ref<VertexBuffer> Create(float* vertices, unsigned int count);
     };
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -127,7 +127,7 @@ namespace Engine
 
         virtual unsigned int GetCount() const = 0;
 
-        static IndexBuffer* Create(unsigned int* indices, unsigned int count);
+        static Ref<IndexBuffer> Create(unsigned int* indices, unsigned int count);
     };
 
 }

@@ -5,31 +5,43 @@
 
 #include "Log.h"
 
-
 /// Bit-field
 #define BIT(x) (1 << (x))
 
 
 /// Assertions
 #ifdef ENGINE_ENABLE_ASSERTS
+
+#include <source_location>
+#include <stacktrace>
+#include <sstream>
+
     /// __builtin_trap is an GCC intrinsic.
-    #define EG_CORE_ASSERT(x, ...) {                                \
-        if (!(x)) {                                                 \
-            EG_CORE_ERROR("Assertion failed: {0}", __VA_ARGS__);    \
-            __builtin_trap();                                       \
-        }                                                           \
+    #define EG_CORE_ASSERT(x, ...) {                                                \
+        if (!(x)) {                                                                 \
+            auto loc = std::source_location::current();                             \
+            EG_CORE_ERROR("Assertion failed at: {}({}:{}) `{}`!",                   \
+                loc.file_name(), loc.line(), loc.column(), loc.function_name());    \
+            EG_CORE_ERROR(__VA_ARGS__);                                             \
+            __builtin_trap();                                                       \
+        }                                                                           \
     }
     /// __builtin_trap is an GCC intrinsic.
-    #define EG_ASSERT(x, ...) {                                     \
-        if (!(x)) {                                                 \
-            EG_ERROR("Assertion failed: {0}", __VA_ARGS__);         \
-            __builtin_trap();                                       \
-        }                                                           \
+    #define EG_ASSERT(x, ...) {                                                     \
+        if (!(x)) {                                                                 \
+            auto loc = std::source_location::current();                             \
+            EG_ERROR("Assertion failed at: {}({}:{}) `{}`!",                        \
+                loc.file_name(), loc.line(), loc.column(), loc.function_name());    \
+            EG_ERROR(__VA_ARGS__);                                                  \
+            __builtin_trap();                                                       \
+        }                                                                           \
     }
 #else
     #define EG_CORE_ASSERT(x, ...)
     #define EG_ASSERT(x, ...)
 #endif
+
+
 
 
 /// Create curried member-function with current object instance bounded.
