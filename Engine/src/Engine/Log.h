@@ -3,8 +3,8 @@
 //
 #pragma once
 
-#include "EnginePCH.h"
 #include "Core.h"
+#include <memory>
 
 #include <spdlog/spdlog.h>
 

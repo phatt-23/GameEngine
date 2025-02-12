@@ -6,13 +6,12 @@
 #include "Window.h"
 #include "LayerStack.h"
 #include "ImGui/ImGuiLayer.h"
-#include "Renderer/VertexArray.h"
-#include "Renderer/Shader.h"
 
 namespace Engine
 {
     // Singleton
-    class Application {
+    class Application 
+    {
         static inline Application* s_Instance = nullptr;
     public:
         Application();
@@ -33,12 +32,10 @@ namespace Engine
 
     private:
         bool m_Running = true;
+        Scope<Window> m_Window;
         LayerStack m_LayerStack;
-        std::unique_ptr<Window> m_Window;
         ImGuiLayer* m_ImGuiLayer;
-
-        std::shared_ptr<VertexArray> m_VertexArray;
-        std::shared_ptr<Shader> m_Shader;
+        float m_LastFrameTime = 0.0f;
     };
 
     // DEFINED IN CLIENT

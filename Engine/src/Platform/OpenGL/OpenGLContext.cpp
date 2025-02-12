@@ -10,15 +10,14 @@
 
 namespace Engine
 {
+
     OpenGLContext::OpenGLContext(GLFWwindow *windowHandle)
         : m_WindowHandle(windowHandle)
     {
         EG_CORE_ASSERT(m_WindowHandle != nullptr, "Window handle is null!");
     }
 
-    OpenGLContext::~OpenGLContext()
-    {
-    }
+    OpenGLContext::~OpenGLContext() = default;
 
     void OpenGLContext::Init()
     {
@@ -37,4 +36,5 @@ namespace Engine
     {
         glfwSwapBuffers(m_WindowHandle);
     }
+
 }

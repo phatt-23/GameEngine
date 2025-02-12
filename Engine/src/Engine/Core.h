@@ -38,3 +38,13 @@
 #else
     #define EG_FORWARD_EVENT_TO_MEM_FN(fn) (std::bind(&(fn), this, std::placeholders::_1))
 #endif
+
+
+namespace Engine
+{
+    template<typename T>
+    using Ref = std::shared_ptr<T>;
+    
+    template<typename T>
+    using Scope = std::unique_ptr<T>;
+}

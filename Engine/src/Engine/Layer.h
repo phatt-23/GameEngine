@@ -4,6 +4,7 @@
 #pragma once
 
 #include "Event/Event.h"
+#include "Core/Timestep.h"
 
 namespace Engine
 {
@@ -17,7 +18,7 @@ namespace Engine
         virtual void OnEvent(Event& event) {}
         virtual void OnAttach() {}
         virtual void OnDetach() {}
-        virtual void OnUpdate() {}
+        virtual void OnUpdate(Timestep ts) {}
         virtual void OnImGuiRender() {}
 
         inline const std::string& GetName() const { return m_DebugName; }

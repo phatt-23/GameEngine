@@ -40,7 +40,7 @@ target_link_libraries(Engine PUBLIC glm::glm)
 add_subdirectory(vendor/glad)
 target_link_libraries(Engine PUBLIC glad)
 
-find_package(spdlog CONFIG REQUIRED)
+add_subdirectory(vendor/spdlog)
 target_link_libraries(Engine PUBLIC spdlog::spdlog)
 
 add_subdirectory(vendor/imgui)

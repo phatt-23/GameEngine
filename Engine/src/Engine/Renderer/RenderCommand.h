@@ -25,7 +25,7 @@ namespace Engine
             s_RendererAPI->SetViewport(x, y, width, height);
         }
 
-        inline static void DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray)
+        inline static void DrawIndexed(const Ref<VertexArray>& vertexArray)
         {
             s_RendererAPI->DrawIndexed(vertexArray);
         }

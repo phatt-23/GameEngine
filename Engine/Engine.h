@@ -9,7 +9,12 @@
 #include "Engine/Input.h"
 #include "Engine/KeyCodes.h"
 #include "Engine/ImGui/ImGuiLayer.h"
-#include "imgui/imgui.h"
+#include "Engine/Renderer/Renderer.h"
+#include "Engine/Renderer/RenderCommand.h"
+#include "Engine/Renderer/Buffer.h"
+#include "Engine/Renderer/VertexArray.h"
+#include "Engine/Renderer/Camera.h"
+#include "Engine/Core/Timestep.h"
 
 ///////// Entry point ////////
 #include "src/Engine/EntryPoint.h"
