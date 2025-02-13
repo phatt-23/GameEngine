@@ -65,13 +65,11 @@ namespace Engine
         SetVSync(true);
 
 
-        // set callbacks
+        // set window callbacks
         glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) -> void {
             auto data = static_cast<WindowData*>(glfwGetWindowUserPointer(window));
-
             WindowResizeEvent event(width, height);
             data->EventCallback(event);
-
             data->Width = width;
             data->Height = height;
         });
@@ -82,9 +80,9 @@ namespace Engine
             data->EventCallback(event);
         });
 
+        // set keyboard callbacks
         glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods) -> void {
             auto data = static_cast<WindowData*>(glfwGetWindowUserPointer(window));
-
             switch (action)
             {
                 case GLFW_PRESS: {
@@ -109,9 +107,9 @@ namespace Engine
             data->EventCallback(event);
         });
 
+        // set mouse callbacks
         glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods) -> void {
             auto data = static_cast<WindowData*>(glfwGetWindowUserPointer(window));
-
             switch (action)
             {
                 case GLFW_PRESS: {
@@ -128,14 +126,12 @@ namespace Engine
 
         glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset) -> void {
             auto data = static_cast<WindowData*>(glfwGetWindowUserPointer(window));
-
             MouseScrolledEvent event((float)xOffset, (float)yOffset);
             data->EventCallback(event);
         });
 
         glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double x, double y) -> void {
             auto data = static_cast<WindowData*>(glfwGetWindowUserPointer(window));
-
             MouseMovedEvent event((float)x, (float)y);
             data->EventCallback(event);
         });

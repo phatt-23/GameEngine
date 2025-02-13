@@ -13,22 +13,15 @@ namespace Engine
 
     class OpenGLShader : public Shader
     {
-    private:
-        struct ErrorMessage 
-        {
-            unsigned int Order;
-            unsigned int Line;
-            unsigned int Column; 
-            std::string Description;
-        };
-
     public:
         OpenGLShader(const std::string& filepath);
-        OpenGLShader(const std::string& vertexSource, const std::string& fragmentSource);
+        OpenGLShader(const std::string& name, const std::string& vertexSource, const std::string& fragmentSource);
         ~OpenGLShader();
 
         void Bind() const override;
         void Unbind() const override;
+
+        const std::string& GetName() const override;
 
         int GetUniformLocation(const std::string& name);
         void UploadUniformMat4(const std::string& name, const glm::mat4& mat);
@@ -51,13 +44,14 @@ namespace Engine
         std::unordered_map<unsigned int, std::string> PreProcess(const std::string& source) const;
 
         [[nodiscard]] 
-        unsigned int CompileSources(const std::unordered_map<unsigned int, std::string>& sources) const;
+        unsigned int Compile(const std::unordered_map<unsigned int, std::string>& sources) const;
 
         [[nodiscard]] 
         unsigned int CompileSource(unsigned int type, const std::string &source) const;
 
     private:
         unsigned int m_RendererID;
+        std::string m_Name;
         std::string m_Filepath;
         std::unordered_map<std::string, int> m_LocationCache;
     };

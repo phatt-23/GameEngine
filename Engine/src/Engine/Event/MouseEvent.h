@@ -70,7 +70,7 @@ namespace Engine
             return std::format("MouseButtonPressed: {}", m_Button);
         }
 
-        EVENT_CLASS_TYPE(EventType::MouseScrolled)
+        EVENT_CLASS_TYPE(EventType::MouseButtonPressed)
     };
 
 
@@ -85,7 +85,7 @@ namespace Engine
             return std::format("MouseButtonReleasedEvent: {}", m_Button);
         }
 
-        EVENT_CLASS_TYPE(EventType::MouseScrolled)
+        EVENT_CLASS_TYPE(EventType::MouseButtonReleased)
     };
 
 

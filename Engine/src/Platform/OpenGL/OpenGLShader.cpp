@@ -3,13 +3,13 @@
 //
 #include "OpenGLShader.h"
 
-#include "Engine/EnginePCH.h"
 #include "Engine/Core.h"
 #include "Platform/OpenGL/OpenGLCore.h"
 
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <unordered_map>
 
 namespace Engine
 {
@@ -17,9 +17,7 @@ namespace Engine
     static std::string dynPrint(std::string_view const& runtimeFormat, Args&&... args)
     {
         return std::vformat(runtimeFormat, std::make_format_args(args...));
-
     }
-
 
     template<typename... Args>
     static std::string dynPrintln(std::string_view const& runtimeFormat, Args&&... args)
@@ -31,59 +29,34 @@ namespace Engine
     OpenGLShader::OpenGLShader(const std::string& filepath)
         : m_Filepath(filepath)
     {
+        std::size_t lastSlash = m_Filepath.find_last_of("/\\");
+        std::size_t lastDot = m_Filepath.rfind(".");
+        std::size_t nameBegin = lastSlash != std::string::npos ? lastSlash + 1 : 0;
+        std::size_t nameEnd = lastDot != std::string::npos ? lastDot : filepath.size();
+        m_Name = m_Filepath.substr(nameBegin, nameEnd - nameBegin);
+
         const std::string content = ReadFile(filepath);
-        EG_CORE_ASSERT(!content.empty(), "The file '{}' is empty!", filepath);
-        
         const auto sources = PreProcess(content);
-        EG_CORE_ASSERT(!sources.empty(), "No shader sources in '{}' were found! Did you specify them with `#type ...`?");
-        
-        m_RendererID = CompileSources(sources);
+        m_RendererID = Compile(sources);
     }
 
 
-    OpenGLShader::OpenGLShader(const std::string& vertexSource, const std::string& fragmentSource)
-        : m_Filepath()
+    OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSource, const std::string& fragmentSource)
+        : m_Filepath(), m_Name(name)
     {
-        m_RendererID = glCreateProgram();
-        const unsigned int vertexShader = CompileSource(GL_VERTEX_SHADER, vertexSource);
-        const unsigned int fragmentShader = CompileSource(GL_FRAGMENT_SHADER, fragmentSource);
-
-        EG_OPENGL_CALL(glAttachShader(m_RendererID, vertexShader));
-        EG_OPENGL_CALL(glAttachShader(m_RendererID, fragmentShader));
-        EG_OPENGL_CALL(glLinkProgram(m_RendererID));
-
-        int status;
-        EG_OPENGL_CALL(glGetProgramiv(m_RendererID, GL_LINK_STATUS, &status));
-
-        if (status == GL_FALSE)
-        {
-            int length;
-            EG_OPENGL_CALL(glGetProgramiv(m_RendererID, GL_INFO_LOG_LENGTH, &length));
-            std::vector<char> message(length);
-            EG_OPENGL_CALL(glGetProgramInfoLog(m_RendererID, length, &length, message.data()));
-
-            EG_OPENGL_CALL(glDeleteShader(m_RendererID));
-            EG_OPENGL_CALL(glDeleteShader(vertexShader));
-            EG_OPENGL_CALL(glDeleteShader(fragmentShader));
-
-            EG_CORE_ERROR("{}", message.data());
-            EG_CORE_ASSERT(false, "Shader compilation failed!");
-
-            return;
-        }
-
-        EG_OPENGL_CALL(glValidateProgram(m_RendererID));
-
-        EG_OPENGL_CALL(glDetachShader(m_RendererID, vertexShader));
-        EG_OPENGL_CALL(glDetachShader(m_RendererID, fragmentShader));
-        EG_OPENGL_CALL(glDeleteShader(vertexShader));
-        EG_OPENGL_CALL(glDeleteShader(fragmentShader));
+        std::unordered_map<unsigned int, std::string> sources;
+        sources[GL_VERTEX_SHADER] = vertexSource;
+        sources[GL_FRAGMENT_SHADER] = fragmentSource;
+        m_RendererID = Compile(sources);
     }
 
 
-    unsigned int OpenGLShader::CompileSources(const std::unordered_map<unsigned int, std::string>& sources) const
+    unsigned int OpenGLShader::Compile(const std::unordered_map<unsigned int, std::string>& sources) const
     {
-        EG_OPENGL_CALL(unsigned int program = glCreateProgram());
+        EG_CORE_ASSERT(sources.size() >= 0 && sources.size() <= 3, "Can only have three shader sources (vertex, geometry, fragment)!");
+
+        unsigned int program;
+        EG_OPENGL_CALL(program = glCreateProgram());
 
         std::vector<unsigned int> shaders(sources.size());
         for (const auto& [type, source] : sources) 
@@ -101,6 +74,7 @@ namespace Engine
         {
             int length;
             EG_OPENGL_CALL(glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length));
+
             std::vector<char> message(length);
             EG_OPENGL_CALL(glGetProgramInfoLog(m_RendererID, length, &length, message.data()));
 
@@ -142,49 +116,60 @@ namespace Engine
             EG_OPENGL_CALL(glGetShaderInfoLog(shader, length, &length, errorLog.data()));
             EG_OPENGL_CALL(glDeleteShader(shader));
             
+            struct ErrorMessage 
+            {
+                unsigned int Order;
+                unsigned int Line;
+                unsigned int Column; 
+                std::string Description;
+            };
             std::vector<ErrorMessage> errorMessages;
 
-            std::istringstream messageStream(std::string(errorLog.data()));
+            std::istringstream messagesStream(std::string(errorLog.data()));
             std::regex pattern(R"((\d+):(\d+)\((\d+)\): error: \s*(.*)?)");
             std::smatch match;
             std::string message;
-
-            while (std::getline(messageStream, message))
+            while (std::getline(messagesStream, message))
             {
                 if (std::regex_match(message, match, pattern))
                 {
                     ErrorMessage m(std::stoi(match[1]), std::stoi(match[2]), std::stoi(match[3]), match[4]);
-                    EG_CORE_DEBUG("order: {}, line: {}, column: {}, desc: '{}'", m.Order, m.Line, m.Column, m.Description);
                     errorMessages.push_back(std::move(m));
                 }
             }
 
+            int lineNumber = 1;
             std::istringstream sourceStream(source);
             std::ostringstream numberedSource;
             std::string sourceLine;
-            int lineNumber = 1;
-
             while (std::getline(sourceStream, sourceLine))
             {
+                std::stringstream fmt;
+
                 const unsigned int numberMargin = 8;
                 const unsigned int lineMargin = 4;
                 
                 auto it = std::find_if(errorMessages.begin(), errorMessages.end(), [&](const auto& m){ return m.Line == lineNumber; });
+
                 if (it == errorMessages.end())
                 {
-                    numberedSource << dynPrintln("{:" + std::to_string(numberMargin) + "}|{:" + std::to_string(lineMargin - 1) + "}{}", lineNumber, " ", sourceLine);
+                    fmt.clear(); 
+                    fmt << "{:" << numberMargin << "}|{:" << lineMargin - 1 << + "}{}";
+                    numberedSource << dynPrintln(fmt.str(), lineNumber, " ", sourceLine);
                     lineNumber++;
                     continue;
                 }
                 
                 const char* arrow = "==>";
-                numberedSource << dynPrintln("{}{:" + std::to_string(numberMargin - strlen(arrow)) + "}|{:" + std::to_string(lineMargin - 1) + "}{}", arrow, lineNumber, " ", sourceLine);
+                fmt.clear(); 
+                fmt << "{}{:" << numberMargin - strlen(arrow) << "}|{:" << lineMargin - 1 << "}{}";
+                numberedSource << dynPrintln(fmt.str(), arrow, lineNumber, " ", sourceLine);
 
                 while (it != errorMessages.end())
                 {
-                    const char* underline = "^^^^";
-                    numberedSource << dynPrintln("{:>" + std::to_string(numberMargin + lineMargin + it->Column - 1) + "}{}", " ", underline);
-                    numberedSource << dynPrintln("{:>" + std::to_string(numberMargin + lineMargin + it->Column - 1) + "}**** {} ****", " ", it->Description);
+                    fmt.clear();
+                    fmt << "{:>" << numberMargin + lineMargin + it->Column - 1 << "}^^^^ **** {} ****";
+                    numberedSource << dynPrintln(fmt.str(), " ", it->Description);
                     it = std::find_if(std::next(it), errorMessages.end(), [&](const auto& m){ return m.Line == lineNumber; });
                 }
 
@@ -214,10 +199,12 @@ namespace Engine
         std::string content;
         input.seekg(0, std::ios::end);
         content.resize(input.tellg());
+
         input.seekg(0, std::ios::beg);
         input.read(content.data(), content.size());
         input.close(); 
 
+        EG_CORE_ASSERT(!content.empty(), "The file '{}' is empty!", filepath);
         return std::move(content);
     }
  
@@ -232,8 +219,11 @@ namespace Engine
         {
             const std::size_t endOfLine = std::min(source.find("\r\n", position), source.find('\n', position));
             const std::size_t afterTypeToken = position + strlen(typeToken);
-            EG_CORE_ASSERT(source[afterTypeToken] == ' ', "The `#type` and shader type specifier must be separated by space! Instead got `{}`.", 
-                                                            source.substr(position, endOfLine - position));
+
+            EG_CORE_ASSERT(source[afterTypeToken] == ' ', 
+                "The `#type` and shader type specifier must be separated by space! Instead got `{}`.", 
+                source.substr(position, endOfLine - position));
+
             const std::size_t typeBegin = source.find_first_not_of(' ', afterTypeToken);
             const std::size_t typeEnd = std::min(endOfLine, std::min(source.find_first_of(' ', typeBegin), source.find_first_of("//", typeBegin)));
             const std::size_t nextLinePos = std::min(source.find_first_not_of('\n', endOfLine), source.find_first_not_of("\r\n", endOfLine));
@@ -250,10 +240,13 @@ namespace Engine
 
             EG_CORE_ASSERT(shaderType != 0, "Unknown shader type specified by `#type {}`", shaderTypeStr);
             EG_CORE_ASSERT(!shaderSources.contains(shaderType), "Only one `#type {}` can be in a single file!", shaderTypeStr);
+
             shaderSources[shaderType] = source.substr(nextLinePos, ((nextPos != std::string::npos) ? nextPos : source.size()) - nextLinePos);
+
             position = nextPos;
         }
 
+        EG_CORE_ASSERT(!shaderSources.empty(), "No shader sources in '{}' were found! Did you specify them with `#type ...`?");
         return shaderSources;
     }
     
@@ -271,6 +264,11 @@ namespace Engine
     void OpenGLShader::Unbind() const 
     {
         EG_OPENGL_CALL(glUseProgram(0));
+    }
+
+    const std::string& OpenGLShader::GetName() const
+    {
+        return m_Name;
     }
 
     int OpenGLShader::GetUniformLocation(const std::string &name)

@@ -35,4 +35,9 @@ namespace Engine
         vertexArray->Bind();
         RenderCommand::DrawIndexed(vertexArray);
     }
+
+    void Renderer::OnWindowResize(int width, int height)
+    {
+        RenderCommand::SetViewport(0, 0, width, height);
+    }
 }

@@ -18,10 +18,9 @@ namespace Engine
         EG_CORE_ASSERT(s_Instance == nullptr, "Application already exists.");
         s_Instance = this;
 
-        // callback with instance reference `this` bounded
         m_Window.reset(Window::Create());
         m_Window->SetEventCallback([this](Event& e) -> void { OnEvent(e); });
-        // m_Window->SetVSync(false);
+        m_Window->SetVSync(true);
 
         Renderer::Init();
 
@@ -39,8 +38,13 @@ namespace Engine
             Timestep timestep = time - m_LastFrameTime;
             m_LastFrameTime = time;
 
-            for (Layer* layer : m_LayerStack)
-                layer->OnUpdate(timestep);
+            if (!m_Minimized)
+            {
+                for (Layer* layer : m_LayerStack)
+                {
+                    layer->OnUpdate(timestep);
+                }
+            }
 
             m_ImGuiLayer->Begin();
             for (Layer* layer : m_LayerStack)
@@ -66,9 +70,15 @@ namespace Engine
         }
     }
 
-    bool Application::OnWindowResize(WindowResizeEvent& event) const
+    bool Application::OnWindowResize(WindowResizeEvent& event)
     {
-        RenderCommand::SetViewport(0, 0, (int)event.GetWidth(), (int)event.GetHeight());
+        if  (event.GetWidth() == 0 || event.GetHeight() == 0)
+        {
+            m_Minimized = true;
+            return false;
+        }
+        m_Minimized = false;
+        Renderer::OnWindowResize(event.GetWidth(), event.GetHeight());
         return false;
     }
 

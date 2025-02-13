@@ -28,10 +28,11 @@ namespace Engine
         static Application& Get();
     private:
         bool OnWindowClose(Event& event);
-        bool OnWindowResize(WindowResizeEvent& event) const;
+        bool OnWindowResize(WindowResizeEvent& event);
 
     private:
         bool m_Running = true;
+        bool m_Minimized = false;
         Scope<Window> m_Window;
         LayerStack m_LayerStack;
         ImGuiLayer* m_ImGuiLayer;

@@ -21,6 +21,7 @@
 #include <utility>
 #include <span>
 #include <ranges>
+#include <regex>
 
 #include <algorithm>
 #include <functional>
@@ -32,4 +33,3 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include <regex>

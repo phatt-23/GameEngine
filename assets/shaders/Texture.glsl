@@ -1,4 +1,4 @@
-#type    vertex// slf //??
+#type vertex
 #version 410 core
 
 layout(location = 0) in vec3 a_Position;
@@ -21,14 +21,12 @@ void main()
 in vec2 v_TexCoord;
 
 uniform vec3 u_Color;
-uniform sample
-r2D u_Texture;
+uniform sampler2D u_Texture;
 
 out vec4 f_Color;
 
 void main() 
 {
-    f_Color = texture(u_Texture, v_TexCoord));
-    // f_Color = vec4(v_TexCoord, 0.0f, 1.0f) + vec4(u_Color, 0.2f);
+    f_Color = texture(u_Texture, v_TexCoord);
 }
 
