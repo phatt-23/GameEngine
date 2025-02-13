@@ -13,6 +13,15 @@ namespace Engine
 
     class OpenGLShader : public Shader
     {
+    private:
+        struct ErrorMessage 
+        {
+            unsigned int Order;
+            unsigned int Line;
+            unsigned int Column; 
+            std::string Description;
+        };
+
     public:
         OpenGLShader(const std::string& filepath);
         OpenGLShader(const std::string& vertexSource, const std::string& fragmentSource);
@@ -49,6 +58,7 @@ namespace Engine
 
     private:
         unsigned int m_RendererID;
+        std::string m_Filepath;
         std::unordered_map<std::string, int> m_LocationCache;
     };
 

@@ -20,14 +20,15 @@ void main()
 
 in vec2 v_TexCoord;
 
-un
-iform vec3 u_Color;
-uniform sampler2D u_Texture;
+uniform vec3 u_Color;
+uniform sample
+r2D u_Texture;
 
 out vec4 f_Color;
 
 void main() 
 {
-    f_Color = texture(u_Texture, v_TexCoord);
+    f_Color = texture(u_Texture, v_TexCoord));
     // f_Color = vec4(v_TexCoord, 0.0f, 1.0f) + vec4(u_Color, 0.2f);
 }
+

@@ -19,13 +19,17 @@
 
 #include <memory>
 #include <utility>
+#include <span>
+#include <ranges>
 
 #include <algorithm>
 #include <functional>
 
 #include <string>
+#include <string_view>
 #include <vector>
 #include <iterator>
 #include <unordered_map>
 #include <unordered_set>
 
+#include <regex>
