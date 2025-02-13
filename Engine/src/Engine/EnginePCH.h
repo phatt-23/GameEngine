@@ -4,23 +4,28 @@
 #pragma once
 
 #include <iostream>
-#include <algorithm>
-#include <utility>
-#include <memory>
-#include <functional>
+#include <iomanip>
+#include <sstream>
+#include <sstream>
 #include <format>
 #include <print>
+
+#include <fstream>
+#include <ios>
+
 #include <stdexcept>
 #include <exception>
+#include <source_location>
+
+#include <memory>
+#include <utility>
+
+#include <algorithm>
+#include <functional>
 
 #include <string>
-#include <sstream>
-
 #include <vector>
+#include <iterator>
 #include <unordered_map>
 #include <unordered_set>
-#include <iterator>
 
-#include <source_location>
-#include <stacktrace>
-#include <sstream>

@@ -9,8 +9,7 @@ namespace Engine
     {
     public:
         Timestep(float&& time = 0.0f)
-            : m_Time(time)
-        {}
+            : m_Time(time) {}
 
         float GetSeconds() const { return m_Time; }
         float GetMilliseconds() const { return 1000.f * m_Time; }

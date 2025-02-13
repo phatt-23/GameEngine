@@ -5,6 +5,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include <unordered_map>
 #include "Engine/Renderer/Shader.h"
 
 namespace Engine
@@ -13,6 +14,7 @@ namespace Engine
     class OpenGLShader : public Shader
     {
     public:
+        OpenGLShader(const std::string& filepath);
         OpenGLShader(const std::string& vertexSource, const std::string& fragmentSource);
         ~OpenGLShader();
 
@@ -31,6 +33,19 @@ namespace Engine
         void UploadUniformInt2(const std::string& name, const glm::i32vec2& vec);
         void UploadUniformInt3(const std::string& name, const glm::i32vec3& vec);
         void UploadUniformInt4(const std::string& name, const glm::i32vec4& vec);
+
+    private:
+        [[nodiscard]] 
+        std::string ReadFile(const std::string& filepath) const;
+
+        [[nodiscard]] 
+        std::unordered_map<unsigned int, std::string> PreProcess(const std::string& source) const;
+
+        [[nodiscard]] 
+        unsigned int CompileSources(const std::unordered_map<unsigned int, std::string>& sources) const;
+
+        [[nodiscard]] 
+        unsigned int CompileSource(unsigned int type, const std::string &source) const;
 
     private:
         unsigned int m_RendererID;

@@ -6,6 +6,7 @@
 #include "Event/ApplicationEvent.h"
 #include "Renderer/RenderCommand.h"
 #include "Core/Timestep.h"
+#include "Renderer/Renderer.h"
 
 #include <GLFW/glfw3.h>
 
@@ -21,6 +22,8 @@ namespace Engine
         m_Window.reset(Window::Create());
         m_Window->SetEventCallback([this](Event& e) -> void { OnEvent(e); });
         // m_Window->SetVSync(false);
+
+        Renderer::Init();
 
         m_ImGuiLayer = new ImGuiLayer();
         m_LayerStack.PushOverlay(m_ImGuiLayer);
@@ -54,7 +57,6 @@ namespace Engine
         EventDispatcher dispatcher(event);
         dispatcher.Dispatch<WindowCloseEvent>(EG_FORWARD_EVENT_TO_MEM_FN(OnWindowClose));
         dispatcher.Dispatch<WindowResizeEvent>(EG_FORWARD_EVENT_TO_MEM_FN(OnWindowResize));
-
         // go backward, first the last-most layer gets the event go back to the first
         for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
         {
@@ -76,12 +78,12 @@ namespace Engine
         return true;
     }
 
-    void Application::PushLayer(Layer *layer)
+    void Application::PushLayer(Layer* layer)
     {
         m_LayerStack.PushLayer(layer);
     }
 
-    void Application::PushOverlay(Layer *overlay)
+    void Application::PushOverlay(Layer* overlay)
     {
         m_LayerStack.PushOverlay(overlay);
     }

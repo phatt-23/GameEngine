@@ -3,9 +3,7 @@
 //
 #pragma once
 
-#include "Core.h"
 #include <memory>
-
 #include <spdlog/spdlog.h>
 
 namespace Engine

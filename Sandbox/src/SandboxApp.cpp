@@ -1,7 +1,9 @@
 #include "Engine.h"
 #include "Platform/OpenGL/OpenGLShader.h"
+#include "Renderer/Renderer.h"
 #include "imgui.h"
 
+#include <glm/ext/matrix_transform.hpp>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -40,36 +42,14 @@ public:
         indexBuffer = Engine::IndexBuffer::Create(indices, sizeof(indices) / sizeof(*indices));
         m_VertexArray->SetIndexBuffer(indexBuffer);
 
-        std::string vertexShader = R"(
-            #version 410 core
-            layout(location = 0) in vec3 a_Position;
-            layout(location = 1) in vec2 a_TexCoord;
-            uniform mat4 u_ViewProjection;
-            out vec2 v_TexCoord;
-            void main() {
-                v_TexCoord = a_TexCoord;
-                gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
-            }
-        )";
+        m_Shader = Engine::Shader::Create("assets/shaders/Texture.glsl");
 
-        std::string fragmentShader = R"(
-            #version 410 core
-            in vec2 v_TexCoord;
-            uniform vec3 u_Color;
-            uniform sampler2D u_Texture;
-            out vec4 f_Color;
-            void main() {
-                f_Color = texture(u_Texture, v_TexCoord);
-                // f_Color = vec4(v_TexCoord, 0.0f, 1.0f) + vec4(u_Color, 0.2f);
-            }
-        )";
-
-        m_Shader = Engine::Shader::Create(vertexShader, fragmentShader);
         m_Texture = Engine::Texture2D::Create("assets/textures/ISO_C++_Logo.png");
-        m_Texture->Bind(0);
+        m_AlphaTexture = Engine::Texture2D::Create("assets/textures/blending_transparent_window.png");
 
         m_Shader->Bind();
         std::dynamic_pointer_cast<Engine::OpenGLShader>(m_Shader)->UploadUniformInt("u_Texture", 0);
+
     }
 
     void OnUpdate(Engine::Timestep ts) override
@@ -103,6 +83,9 @@ public:
         Engine::RenderCommand::SetClearColor({0.1, 0.1, 0.1, 0.1});
         Engine::RenderCommand::Clear();
         Engine::Renderer::BeginScene(m_Camera);
+        m_Texture->Bind(0);
+        Engine::Renderer::Submit(m_Shader, m_VertexArray, glm::translate(glm::identity<glm::mat4>(), glm::vec3(0.3, 0.3, 0.0)));
+        m_AlphaTexture->Bind(0);
         Engine::Renderer::Submit(m_Shader, m_VertexArray);
         Engine::Renderer::EndScene();
     }
@@ -124,7 +107,7 @@ private:
     Engine::OrthographicCamera m_Camera;
     Engine::Ref<Engine::VertexArray> m_VertexArray;
     Engine::Ref<Engine::Shader> m_Shader;
-    Engine::Ref<Engine::Texture2D> m_Texture;
+    Engine::Ref<Engine::Texture2D> m_Texture, m_AlphaTexture;
     float m_Rotation = 0.0f;
     glm::vec3 m_Position = {0.0, 0.0, 0.0};
     glm::vec3 m_Color = {1.0, 0.0, 0.0};

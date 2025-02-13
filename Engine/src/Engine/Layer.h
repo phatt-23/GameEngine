@@ -10,8 +10,8 @@ namespace Engine
 {
     class Layer {
     public:
-        explicit Layer(std::string  debugName = "Layer")
-            : m_DebugName(std::move(debugName)) {}
+        explicit Layer(std::string&& debugName = "Layer")
+            : m_DebugName(debugName) {}
 
         virtual ~Layer() = default;
 
