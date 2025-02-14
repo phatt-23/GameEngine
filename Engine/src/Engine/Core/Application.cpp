@@ -4,9 +4,9 @@
 
 #include "Application.h"
 #include "Event/ApplicationEvent.h"
-#include "Renderer/RenderCommand.h"
 #include "Core/Timestep.h"
 #include "Renderer/Renderer.h"
+#include "Renderer/Renderer2D.h"
 
 #include <GLFW/glfw3.h>
 
@@ -23,12 +23,17 @@ namespace Engine
         m_Window->SetVSync(true);
 
         Renderer::Init();
+        Renderer2D::Init();
 
         m_ImGuiLayer = new ImGuiLayer();
         m_LayerStack.PushOverlay(m_ImGuiLayer);
     }
 
-    Application::~Application() = default;
+    Application::~Application() 
+    {
+        Renderer::Shutdown();
+        Renderer2D::Shutdown();
+    }
 
     void Application::Run()
     {

@@ -15,6 +15,11 @@ namespace Engine
             s_RendererAPI->Init();
         }
 
+        inline static void Shutdown()
+        {
+            s_RendererAPI->Shutdown();
+        }
+
         inline static void SetClearColor(const glm::vec4& color)
         {
             s_RendererAPI->SetClearColor(color);

@@ -3,7 +3,7 @@
 //
 #pragma once
 
-#include "VertexArray.h"
+#include "Renderer/VertexArray.h"
 #include <glm/glm.hpp>
 
 namespace Engine
@@ -20,6 +20,7 @@ namespace Engine
 
     public:
         virtual void Init() = 0;
+        virtual void Shutdown() = 0;
         virtual void SetClearColor(const glm::vec4& color) = 0;
         virtual void Clear() = 0;
         virtual void SetViewport(int x, int y, int width, int height) = 0;

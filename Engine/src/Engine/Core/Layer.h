@@ -5,6 +5,7 @@
 
 #include "Event/Event.h"
 #include "Core/Timestep.h"
+#include <string>
 
 namespace Engine
 {
@@ -15,10 +16,10 @@ namespace Engine
 
         virtual ~Layer() = default;
 
-        virtual void OnEvent(Event& event) {}
+        virtual void OnEvent([[maybe_unused]] Event& event) {}
         virtual void OnAttach() {}
         virtual void OnDetach() {}
-        virtual void OnUpdate(Timestep ts) {}
+        virtual void OnUpdate([[maybe_unused]] Timestep ts) {}
         virtual void OnImGuiRender() {}
 
         inline const std::string& GetName() const { return m_DebugName; }

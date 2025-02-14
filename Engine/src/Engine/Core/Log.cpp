@@ -2,7 +2,7 @@
 // Created by phatt on 2/9/25.
 //
 
-#include "Log.h"
+#include "Core/Log.h"
 #include <spdlog/sinks/stdout_color_sinks.h>
 
 namespace Engine {
@@ -20,4 +20,5 @@ namespace Engine {
         s_ClientLogger = spdlog::stdout_color_mt("App");
         s_ClientLogger->set_level(spdlog::level::trace);
     }
+
 }

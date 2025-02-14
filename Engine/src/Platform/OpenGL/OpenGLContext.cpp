@@ -3,10 +3,11 @@
 //
 
 #include "OpenGLContext.h"
+#include "OpenGLCore.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "Engine/Core.h"
+#include "Core/Core.h"
 
 namespace Engine
 {
@@ -30,6 +31,12 @@ namespace Engine
         EG_CORE_INFO("  Vendor: {}", (char*)glGetString(GL_VENDOR));
         EG_CORE_INFO("  Renderer: {}", (char*)glGetString(GL_RENDERER));
         EG_CORE_INFO("  Version: {}", (char*)glGetString(GL_VERSION));
+
+        int versionMajor, versionMinor;
+        EG_OPENGL_CALL(glGetIntegerv(GL_MAJOR_VERSION, &versionMajor));
+        EG_OPENGL_CALL(glGetIntegerv(GL_MINOR_VERSION, &versionMinor));
+        EG_CORE_ASSERT(versionMajor > 4 || (versionMajor == 4 && versionMinor >= 5), 
+                       "Engine requires OpenGL version of at least 4.5.");
     }
 
     void OpenGLContext::SwapBuffers()

@@ -2,9 +2,8 @@
 // Created by phatt on 2/11/25.
 //
 
-#include "EnginePCH.h"
-#include "VertexArray.h"
-#include "Renderer.h"
+#include "Renderer/VertexArray.h"
+#include "Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLVertexArray.h"
 
 namespace Engine

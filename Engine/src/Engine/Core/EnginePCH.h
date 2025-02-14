@@ -12,6 +12,7 @@
 
 #include <fstream>
 #include <ios>
+#include <filesystem>
 
 #include <stdexcept>
 #include <exception>
@@ -25,6 +26,7 @@
 
 #include <algorithm>
 #include <functional>
+#include <optional>
 
 #include <string>
 #include <string_view>

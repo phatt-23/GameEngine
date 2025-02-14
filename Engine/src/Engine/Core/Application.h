@@ -3,8 +3,8 @@
 //
 #pragma once
 
-#include "Window.h"
-#include "LayerStack.h"
+#include "Core/Window.h"
+#include "Core/LayerStack.h"
 #include "ImGui/ImGuiLayer.h"
 
 namespace Engine

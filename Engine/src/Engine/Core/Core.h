@@ -3,18 +3,17 @@
 //
 #pragma once
 
-#include "Log.h"
 
-/// Bit-field
-#define BIT(x) (1 << (x))
+#ifdef ENGINE_ENABLE_LOGGING
+    #include "Core/Log.h"
+#endif
 
 
 /// Assertions
-#ifdef ENGINE_ENABLE_ASSERTS
-
-#include <source_location>
-#include <stacktrace>
-#include <sstream>
+#if defined(ENGINE_ENABLE_ASSERTS)
+    #include <source_location>
+    #include <stacktrace>
+    #include <sstream>
 
     /// __builtin_trap is an GCC intrinsic.
     #define EG_CORE_ASSERT(x, ...) {                                                \
@@ -26,6 +25,7 @@
             __builtin_trap();                                                       \
         }                                                                           \
     }
+
     /// __builtin_trap is an GCC intrinsic.
     #define EG_ASSERT(x, ...) {                                                     \
         if (!(x)) {                                                                 \
@@ -36,12 +36,14 @@
             __builtin_trap();                                                       \
         }                                                                           \
     }
-#else
+#else 
     #define EG_CORE_ASSERT(x, ...)
     #define EG_ASSERT(x, ...)
 #endif
 
 
+/// Bit-field
+#define BIT(x) (1 << (x))
 
 
 /// Create curried member-function with current object instance bounded.
@@ -60,3 +62,7 @@ namespace Engine
     template<typename T>
     using Scope = std::unique_ptr<T>;
 }
+
+#define EG_IM_UNUSED(_PARAM) ((void)_PARAM)
+
+

@@ -1,9 +1,9 @@
 //
 // Created by phatt on 2/11/25.
 //
-#include "Engine/Core.h"
-#include "Buffer.h"
-#include "Renderer.h"
+#include "Core/Core.h"
+#include "Renderer/Buffer.h"
+#include "Renderer/Renderer.h"
 
 #include "Platform/OpenGL/OpenGLBuffer.h"
 

@@ -1,9 +1,9 @@
 //
 // Created by phatt on 2/10/25.
 //
-#include "Engine/Core.h"
-#include "Shader.h"
-#include "Renderer.h"
+#include "Core/Core.h"
+#include "Renderer/Shader.h"
+#include "Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
 #include <glad/glad.h>

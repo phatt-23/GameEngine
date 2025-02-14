@@ -23,6 +23,11 @@ namespace Engine
 
         const std::string& GetName() const override;
 
+        void SetInt(const std::string& name, int value) override;
+        void SetFloat3(const std::string& name, const glm::vec3& vec) override;
+        void SetFloat4(const std::string& name, const glm::vec4& vec) override;
+        void SetMat4(const std::string& name, const glm::mat4& mat) override;
+
         int GetUniformLocation(const std::string& name);
         void UploadUniformMat4(const std::string& name, const glm::mat4& mat);
 

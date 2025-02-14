@@ -2,7 +2,7 @@
 // Created by phatt on 2/11/25.
 //
 #pragma once
-#include "Engine/Core.h"
+#include "Core/Core.h"
 
 namespace Engine
 {

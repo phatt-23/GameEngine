@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "Window.h"
+#include "Core/Window.h"
 #include "Renderer/GraphicsContext.h"
 
 class GLFWwindow;

@@ -30,11 +30,16 @@ namespace Engine
         }
 
         EG_OPENGL_CALL(glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID));
+        EG_OPENGL_CALL(glBindTexture(GL_TEXTURE_2D, 0)); // added
         EG_OPENGL_CALL(glTextureStorage2D(m_RendererID, 1, internalFormat, m_Width, m_Height));
 
         EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
         EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+        
+        EG_CORE_WARN("Image size in bits: {} ({}x{}x{}) and bytes: {}", 
+                     width * height * channels, width, height, channels, (width * height * channels)/8);
 
+        // EG_OPENGL_CALL(glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, m_Width, m_Height, 0, format, GL_UNSIGNED_BYTE, imageData));
         EG_OPENGL_CALL(glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, format, GL_UNSIGNED_BYTE, imageData));
         stbi_image_free(imageData);
     }

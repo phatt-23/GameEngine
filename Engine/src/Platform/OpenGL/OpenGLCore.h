@@ -7,7 +7,7 @@
 
 #ifdef ENGINE_OPENGL_CALL_ERROR_CHECK
 #include <source_location>
-#include "Engine/Core.h"
+#include "Core/Core.h"
 const char* OpenGLErrorTypeToString(GLenum glError);
 #endif
 

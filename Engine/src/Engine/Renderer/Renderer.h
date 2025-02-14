@@ -3,17 +3,19 @@
 //
 #pragma once
 
-#include "RendererAPI.h"
-#include "VertexArray.h"
-#include "Camera.h"
-#include "Shader.h"
+#include "Renderer/RendererAPI.h"
+#include "Renderer/VertexArray.h"
+#include "Renderer/Camera.h"
+#include "Renderer/Shader.h"
 
 namespace Engine
 {
 
-    class Renderer {
+    class Renderer 
+    {
     public:
         static void Init();
+        static void Shutdown();
 
         static void BeginScene(const OrthographicCamera& camera);
         static void EndScene();
@@ -26,7 +28,7 @@ namespace Engine
     private:
         inline static struct SceneData {
             glm::mat4 ViewProjectionMatrix;
-        } *s_SceneData = new SceneData();
+        } *s_SceneData = nullptr;
     };
 
 }

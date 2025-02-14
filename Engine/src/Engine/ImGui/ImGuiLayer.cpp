@@ -2,8 +2,8 @@
 // Created by phatt on 2/10/25.
 //
 
-#include "ImGuiLayer.h"
-#include "Application.h"
+#include "Core/Application.h"
+#include "ImGui/ImGuiLayer.h"
 #include "imgui/backends/imgui_impl_glfw.h"
 #include "imgui/backends/imgui_impl_opengl3.h"
 

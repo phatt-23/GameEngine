@@ -3,28 +3,16 @@
 //
 #include "OpenGLShader.h"
 
-#include "Engine/Core.h"
+#include "Core/EnginePCH.h"
+#include "Core/Core.h"
 #include "Platform/OpenGL/OpenGLCore.h"
 
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include <unordered_map>
 
 namespace Engine
 {
-    template<typename... Args>
-    static std::string dynPrint(std::string_view const& runtimeFormat, Args&&... args)
-    {
-        return std::vformat(runtimeFormat, std::make_format_args(args...));
-    }
-
-    template<typename... Args>
-    static std::string dynPrintln(std::string_view const& runtimeFormat, Args&&... args)
-    {
-        return std::vformat(runtimeFormat, std::make_format_args(args...)) + "\n";
-    }
-
 
     OpenGLShader::OpenGLShader(const std::string& filepath)
         : m_Filepath(filepath)
@@ -142,10 +130,11 @@ namespace Engine
             std::istringstream sourceStream(source);
             std::ostringstream numberedSource;
             std::string sourceLine;
+        
+            std::stringstream format;
+
             while (std::getline(sourceStream, sourceLine))
             {
-                std::stringstream fmt;
-
                 const unsigned int numberMargin = 8;
                 const unsigned int lineMargin = 4;
                 
@@ -153,23 +142,17 @@ namespace Engine
 
                 if (it == errorMessages.end())
                 {
-                    fmt.clear(); 
-                    fmt << "{:" << numberMargin << "}|{:" << lineMargin - 1 << + "}{}";
-                    numberedSource << dynPrintln(fmt.str(), lineNumber, " ", sourceLine);
+                    numberedSource << EG_DYN_FORMATLN(EG_FORMAT_STRING("{:", numberMargin, "}|{:", lineMargin - 1, + "}{}"), lineNumber, " ", sourceLine);
                     lineNumber++;
                     continue;
                 }
                 
                 const char* arrow = "==>";
-                fmt.clear(); 
-                fmt << "{}{:" << numberMargin - strlen(arrow) << "}|{:" << lineMargin - 1 << "}{}";
-                numberedSource << dynPrintln(fmt.str(), arrow, lineNumber, " ", sourceLine);
+                numberedSource << EG_DYN_FORMATLN(EG_FORMAT_STRING("{}{:", numberMargin - strlen(arrow), "}|{:", lineMargin - 1, "}{}"), arrow, lineNumber, " ", sourceLine);
 
                 while (it != errorMessages.end())
                 {
-                    fmt.clear();
-                    fmt << "{:>" << numberMargin + lineMargin + it->Column - 1 << "}^^^^ **** {} ****";
-                    numberedSource << dynPrintln(fmt.str(), " ", it->Description);
+                    numberedSource << EG_DYN_FORMATLN(EG_FORMAT_STRING("{:>", numberMargin + lineMargin + it->Column - 2, "} ^^^^ * {} *"), " ", it->Description);
                     it = std::find_if(std::next(it), errorMessages.end(), [&](const auto& m){ return m.Line == lineNumber; });
                 }
 
@@ -246,7 +229,7 @@ namespace Engine
             position = nextPos;
         }
 
-        EG_CORE_ASSERT(!shaderSources.empty(), "No shader sources in '{}' were found! Did you specify them with `#type ...`?");
+        EG_CORE_ASSERT(!shaderSources.empty(), "No shader sources in '{}' were found! Did you specify them with `#type ...`?", m_Filepath);
         return shaderSources;
     }
     
@@ -264,6 +247,26 @@ namespace Engine
     void OpenGLShader::Unbind() const 
     {
         EG_OPENGL_CALL(glUseProgram(0));
+    }
+
+    void OpenGLShader::SetInt(const std::string& name, int value)
+    {
+        UploadUniformInt(name, value);
+    }
+
+    void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& vec)
+    {
+        UploadUniformFloat3(name, vec);
+    }
+
+    void OpenGLShader::SetFloat4(const std::string& name, const glm::vec4& vec)
+    {
+        UploadUniformFloat4(name, vec);
+    }
+
+    void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& mat)
+    {
+        UploadUniformMat4(name, mat);
     }
 
     const std::string& OpenGLShader::GetName() const

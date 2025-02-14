@@ -4,7 +4,7 @@
 
 #include "LinuxWindow.h"
 
-#include "Core.h"
+#include "Core/Core.h"
 #include "Event/ApplicationEvent.h"
 #include "Event/KeyEvent.h"
 #include "Event/MouseEvent.h"
@@ -33,7 +33,11 @@ namespace Engine
         Init(props);
     }
 
-    LinuxWindow::~LinuxWindow() noexcept = default;
+    LinuxWindow::~LinuxWindow() noexcept 
+    {
+        delete m_Context;
+        Shutdown(); 
+    };
 
     void LinuxWindow::Init(const Engine::WindowProps &props)
     {

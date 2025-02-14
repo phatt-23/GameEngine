@@ -3,8 +3,8 @@
 //
 #pragma once
 
-#include "Engine/Core.h"
-#include "Engine/Event/Event.h"
+#include "Core/Core.h"
+#include "Event/Event.h"
 
 namespace Engine
 {

@@ -3,7 +3,8 @@
 //
 #pragma once
 
-#include "Engine/Core.h"
+#include <string>
+#include "Core/Core.h"
 
 namespace Engine
 {

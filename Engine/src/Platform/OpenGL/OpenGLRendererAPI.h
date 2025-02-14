@@ -12,9 +12,13 @@ namespace Engine
     {
     public:
         void Init() override;
+        void Shutdown() override;
+
         void SetClearColor(const glm::vec4& color) override;
         void Clear() override;
+
         void SetViewport(int x, int y, int width, int height) override;
+
         void DrawIndexed(const Ref<VertexArray>& vertexArray) override;
     };
 

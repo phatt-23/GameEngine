@@ -12,7 +12,14 @@ namespace Engine
 {
     void Renderer::Init()
     {
+        s_SceneData = new SceneData;
         RenderCommand::Init();
+    }
+
+    void Renderer::Shutdown()
+    {
+        delete s_SceneData;
+        RenderCommand::Shutdown();
     }
 
     void Renderer::BeginScene(const OrthographicCamera& camera)

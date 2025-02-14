@@ -4,8 +4,8 @@
 
 #include "LinuxInput.h"
 
-#include "EnginePCH.h"
-#include "Application.h"
+#include "Core/EnginePCH.h"
+#include "Core/Application.h"
 
 #include <GLFW/glfw3.h>
 
