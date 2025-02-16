@@ -14,7 +14,7 @@ namespace Engine
         switch (Renderer::GetAPI())
         {
             case RendererAPI::API::None:   EG_CORE_ASSERT(false, "RendererAPI::None not supported!");
-            case RendererAPI::API::OpenGL: return std::make_shared<OpenGLVertexArray>();
+            case RendererAPI::API::OpenGL: return CreateRef<OpenGLVertexArray>();
         }
 
         EG_CORE_ASSERT(false, "Unknown renderer API!");

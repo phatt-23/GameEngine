@@ -22,11 +22,11 @@ namespace Engine
     enum EventCategory : int
     {
         None = 0,
-        EventCategoryApplication    = BIT(1),
-        EventCategoryInput          = BIT(2),
-        EventCategoryKeyboard       = BIT(3),
-        EventCategoryMouse          = BIT(4),
-        EventCategoryMouseButton    = BIT(5),
+        EventCategoryApplication    = EG_BIT(1),
+        EventCategoryInput          = EG_BIT(2),
+        EventCategoryKeyboard       = EG_BIT(3),
+        EventCategoryMouse          = EG_BIT(4),
+        EventCategoryMouseButton    = EG_BIT(5),
     };
 
 
@@ -65,8 +65,8 @@ namespace Engine
     {
     public:
         template<typename T>
-        requires std::derived_from<T, Event>
-        and requires { { T::GetStaticType() } -> std::convertible_to<EventType>; }
+        requires std::derived_from<T, Event> 
+        && requires { { T::GetStaticType() } -> std::convertible_to<EventType>; }
         using EventFn = std::function<bool(T&)>;
 
         EventDispatcher(Event& event)

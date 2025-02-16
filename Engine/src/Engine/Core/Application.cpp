@@ -15,15 +15,16 @@ namespace Engine
 
     Application::Application()
     {
+        EG_PROFILE_FUNCTION();
+
         EG_CORE_ASSERT(s_Instance == nullptr, "Application already exists.");
         s_Instance = this;
 
-        m_Window.reset(Window::Create());
+        m_Window = Window::Create();
         m_Window->SetEventCallback([this](Event& e) -> void { OnEvent(e); });
         m_Window->SetVSync(true);
 
         Renderer::Init();
-        Renderer2D::Init();
 
         m_ImGuiLayer = new ImGuiLayer();
         m_LayerStack.PushOverlay(m_ImGuiLayer);
@@ -31,30 +32,41 @@ namespace Engine
 
     Application::~Application() 
     {
+        EG_PROFILE_FUNCTION();
+
         Renderer::Shutdown();
-        Renderer2D::Shutdown();
     }
 
     void Application::Run()
     {
+        EG_PROFILE_FUNCTION();
+
         while (m_Running)
         {
+            EG_PROFILE_SCOPE("One Frame.");
+
             const auto time = (float)glfwGetTime();
             Timestep timestep = time - m_LastFrameTime;
             m_LastFrameTime = time;
 
             if (!m_Minimized)
             {
+                EG_PROFILE_SCOPE("Updating layers.");
+
                 for (Layer* layer : m_LayerStack)
                 {
                     layer->OnUpdate(timestep);
                 }
             }
 
-            m_ImGuiLayer->Begin();
-            for (Layer* layer : m_LayerStack)
-                layer->OnImGuiRender();
-            m_ImGuiLayer->End();
+            {
+                EG_PROFILE_SCOPE("Updating ImGui layers.");
+
+                m_ImGuiLayer->Begin();
+                for (Layer* layer : m_LayerStack)
+                    layer->OnImGuiRender();
+                m_ImGuiLayer->End();
+            }
 
             m_Window->OnUpdate();
         }
@@ -62,10 +74,12 @@ namespace Engine
 
     void Application::OnEvent(Event& event)
     {
+        EG_PROFILE_FUNCTION();
+
         // EG_CORE_TRACE("{0}", event);
         EventDispatcher dispatcher(event);
-        dispatcher.Dispatch<WindowCloseEvent>(EG_FORWARD_EVENT_TO_MEM_FN(OnWindowClose));
-        dispatcher.Dispatch<WindowResizeEvent>(EG_FORWARD_EVENT_TO_MEM_FN(OnWindowResize));
+        dispatcher.Dispatch<WindowCloseEvent>(EG_FORWARD_EVENT_TO_MEM_FN(Application::OnWindowClose));
+        dispatcher.Dispatch<WindowResizeEvent>(EG_FORWARD_EVENT_TO_MEM_FN(Application::OnWindowResize));
         // go backward, first the last-most layer gets the event go back to the first
         for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
         {

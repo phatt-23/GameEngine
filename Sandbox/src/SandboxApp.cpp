@@ -7,8 +7,6 @@
 
 #include "Sandbox2D.h"
 
-#include <filesystem>
-
 class SandboxApp : public Engine::Application
 {
 public:

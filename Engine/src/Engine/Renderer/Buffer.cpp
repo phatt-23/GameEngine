@@ -46,7 +46,7 @@ namespace Engine
         switch (Renderer::GetAPI())
         {
             case RendererAPI::API::None:   EG_CORE_ASSERT(false, "RendererAPI::None not supported!");
-            case RendererAPI::API::OpenGL: return std::make_shared<OpenGLVertexBuffer>(vertices, count);
+            case RendererAPI::API::OpenGL: return CreateRef<OpenGLVertexBuffer>(vertices, count);
         }
 
         EG_CORE_ASSERT(false, "Unknown renderer API!");
@@ -62,7 +62,7 @@ namespace Engine
         switch (Renderer::GetAPI())
         {
             case RendererAPI::API::None:   EG_CORE_ASSERT(false, "RendererAPI::None not supported!");
-            case RendererAPI::API::OpenGL: return std::make_shared<OpenGLIndexBuffer>(indices, count);
+            case RendererAPI::API::OpenGL: return CreateRef<OpenGLIndexBuffer>(indices, count);
         }
 
         EG_CORE_ASSERT(false, "Unknown renderer API!");

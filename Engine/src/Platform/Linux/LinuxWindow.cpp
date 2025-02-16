@@ -22,14 +22,16 @@ namespace Engine
         EG_CORE_ERROR("GLFW Error ({}): {}", errorCode, message);
     }
 
-    Window* Window::Create(const WindowProps& props)
+    Scope<Window> Window::Create(const WindowProps& props)
     {
-        return new LinuxWindow(props);
+        return CreateScope<LinuxWindow>(props);
     }
 
     LinuxWindow::LinuxWindow(const Engine::WindowProps &props)
         : m_Window(nullptr), m_Context(nullptr)
     {
+        EG_PROFILE_FUNCTION();
+
         Init(props);
     }
 
@@ -41,6 +43,8 @@ namespace Engine
 
     void LinuxWindow::Init(const Engine::WindowProps &props)
     {
+        EG_PROFILE_FUNCTION();
+
         m_Data.Title = props.Title;
         m_Data.Width = props.Width;
         m_Data.Height = props.Height;
@@ -143,11 +147,15 @@ namespace Engine
 
     void LinuxWindow::Shutdown()
     {
+        EG_PROFILE_FUNCTION();
+
         glfwDestroyWindow(m_Window);
     }
 
     void LinuxWindow::OnUpdate()
     {
+        EG_PROFILE_FUNCTION();
+
         glfwPollEvents();
         m_Context->SwapBuffers();
     }

@@ -22,6 +22,8 @@ OrthographicCameraController::~OrthographicCameraController()
 
 void OrthographicCameraController::OnUpdate(Timestep ts)
 {
+    EG_PROFILE_FUNCTION();
+
     const float translationSpeed = m_CameraTranslationSpeed * ts;
     const float rotationSpeed = m_CameraRotationSpeed * ts;
 
@@ -50,6 +52,8 @@ void OrthographicCameraController::OnUpdate(Timestep ts)
 
 void OrthographicCameraController::OnEvent(Event& e)
 {
+    EG_PROFILE_FUNCTION();
+
     EventDispatcher dispatcher(e);
     dispatcher.Dispatch<MouseScrolledEvent>(EG_FORWARD_EVENT_TO_MEM_FN(OrthographicCameraController::OnMouseScrolled));
     dispatcher.Dispatch<WindowResizeEvent>(EG_FORWARD_EVENT_TO_MEM_FN(OrthographicCameraController::OnWindowResized));
@@ -57,6 +61,8 @@ void OrthographicCameraController::OnEvent(Event& e)
 
 bool OrthographicCameraController::OnMouseScrolled(MouseScrolledEvent& e)
 {
+    EG_PROFILE_FUNCTION();
+
     m_ZoomLevel -= e.GetYOffset() * 0.25f;
     m_ZoomLevel = std::max(m_ZoomLevel, 0.25f);
     m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
@@ -65,6 +71,8 @@ bool OrthographicCameraController::OnMouseScrolled(MouseScrolledEvent& e)
 
 bool OrthographicCameraController::OnWindowResized(WindowResizeEvent& e)
 {
+    EG_PROFILE_FUNCTION();
+
     m_AspectRatio = (float)e.GetWidth() / (float)e.GetHeight();
     m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
     return false;

@@ -2,6 +2,7 @@
 // Created by phatt on 2/11/25.
 //
 #include "Camera.h"
+#include "Core/Core.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -15,6 +16,7 @@ namespace Engine
         m_Position(0.0),
         m_Rotation(0.0)
     {
+        EG_PROFILE_FUNCTION();
         m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;
     }
 
@@ -22,6 +24,7 @@ namespace Engine
 
     void OrthographicCamera::SetProjection(float left, float right, float bottom, float top)
     {
+        EG_PROFILE_FUNCTION();
         m_ProjectionMatrix = glm::ortho(left, right, bottom, top, -1.0f, 1.0f);
         m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;
     }
@@ -33,6 +36,7 @@ namespace Engine
 
     void OrthographicCamera::SetPosition(const glm::vec3 &position)
     {
+        EG_PROFILE_FUNCTION();
         m_Position = position;
         RecalculateViewMatrix();
     }
@@ -44,12 +48,15 @@ namespace Engine
 
     void OrthographicCamera::SetRotation(float rotation)
     {
+        EG_PROFILE_FUNCTION();
         m_Rotation = rotation;
         RecalculateViewMatrix();
     }
 
     void OrthographicCamera::RecalculateViewMatrix()
     {
+        EG_PROFILE_FUNCTION();
+
         auto transform = glm::translate(glm::identity<glm::mat4>(), m_Position)
                 * glm::rotate(glm::identity<glm::mat4>(), glm::radians(m_Rotation), glm::vec3(0.0f, 0.0f, 1.0f));
 

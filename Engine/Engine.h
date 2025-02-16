@@ -21,5 +21,8 @@
 #include "Engine/Renderer/Camera.h"
 #include "Engine/Renderer/OrthographicCameraController.h"
 
+#include "Engine/Debug/Assert.h"
+#include "Engine/Debug/Instrumentor.h"
+
 
 

@@ -17,6 +17,8 @@ namespace Engine
     OpenGLShader::OpenGLShader(const std::string& filepath)
         : m_Filepath(filepath)
     {
+        EG_PROFILE_FUNCTION();
+
         std::size_t lastSlash = m_Filepath.find_last_of("/\\");
         std::size_t lastDot = m_Filepath.rfind(".");
         std::size_t nameBegin = lastSlash != std::string::npos ? lastSlash + 1 : 0;
@@ -32,6 +34,8 @@ namespace Engine
     OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSource, const std::string& fragmentSource)
         : m_Filepath(), m_Name(name)
     {
+        EG_PROFILE_FUNCTION();
+    
         std::unordered_map<unsigned int, std::string> sources;
         sources[GL_VERTEX_SHADER] = vertexSource;
         sources[GL_FRAGMENT_SHADER] = fragmentSource;
@@ -41,6 +45,8 @@ namespace Engine
 
     unsigned int OpenGLShader::Compile(const std::unordered_map<unsigned int, std::string>& sources) const
     {
+        EG_PROFILE_FUNCTION();
+
         EG_CORE_ASSERT(sources.size() >= 0 && sources.size() <= 3, "Can only have three shader sources (vertex, geometry, fragment)!");
 
         unsigned int program;
@@ -87,6 +93,8 @@ namespace Engine
 
     unsigned int OpenGLShader::CompileSource(unsigned int type, const std::string &source) const
     {
+        EG_PROFILE_FUNCTION();
+
         const char* sourcePtr = source.c_str();
 
         EG_OPENGL_CALL(const unsigned int shader = glCreateShader(type));
@@ -115,10 +123,11 @@ namespace Engine
 
             std::istringstream messagesStream(std::string(errorLog.data()));
             std::regex pattern(R"((\d+):(\d+)\((\d+)\): error: \s*(.*)?)");
-            std::smatch match;
             std::string message;
+
             while (std::getline(messagesStream, message))
             {
+                std::smatch match;
                 if (std::regex_match(message, match, pattern))
                 {
                     ErrorMessage m(std::stoi(match[1]), std::stoi(match[2]), std::stoi(match[3]), match[4]);
@@ -130,8 +139,6 @@ namespace Engine
             std::istringstream sourceStream(source);
             std::ostringstream numberedSource;
             std::string sourceLine;
-        
-            std::stringstream format;
 
             while (std::getline(sourceStream, sourceLine))
             {
@@ -172,6 +179,8 @@ namespace Engine
 
     std::string OpenGLShader::ReadFile(const std::string& filepath) const 
     {
+        EG_PROFILE_FUNCTION();
+
         std::ifstream input(filepath, std::ios::binary);
         if (!input.is_open())
         {
@@ -193,6 +202,8 @@ namespace Engine
  
     std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string& source) const
     {
+        EG_PROFILE_FUNCTION();
+
         std::unordered_map<GLenum, std::string> shaderSources;
 
         const char* typeToken = "#type";
@@ -236,36 +247,43 @@ namespace Engine
 
     OpenGLShader::~OpenGLShader() 
     {
+        EG_PROFILE_FUNCTION();
         EG_OPENGL_CALL(glDeleteProgram(m_RendererID));
     }
 
     void OpenGLShader::Bind() const 
     {
+        EG_PROFILE_FUNCTION();
         EG_OPENGL_CALL(glUseProgram(m_RendererID));
     }
 
     void OpenGLShader::Unbind() const 
     {
+        EG_PROFILE_FUNCTION();
         EG_OPENGL_CALL(glUseProgram(0));
     }
 
     void OpenGLShader::SetInt(const std::string& name, int value)
     {
+        EG_PROFILE_FUNCTION();
         UploadUniformInt(name, value);
     }
 
     void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& vec)
     {
+        EG_PROFILE_FUNCTION();
         UploadUniformFloat3(name, vec);
     }
 
     void OpenGLShader::SetFloat4(const std::string& name, const glm::vec4& vec)
     {
+        EG_PROFILE_FUNCTION();
         UploadUniformFloat4(name, vec);
     }
 
     void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& mat)
     {
+        EG_PROFILE_FUNCTION();
         UploadUniformMat4(name, mat);
     }
 
@@ -276,6 +294,7 @@ namespace Engine
 
     int OpenGLShader::GetUniformLocation(const std::string &name)
     {
+        EG_PROFILE_FUNCTION();
         if (m_LocationCache.contains(name))
             return m_LocationCache[name];
 
@@ -289,45 +308,55 @@ namespace Engine
 
     void OpenGLShader::UploadUniformMat4(const std::string &name, const glm::mat4 &mat)
     {
+        EG_PROFILE_FUNCTION();
         EG_OPENGL_CALL(glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, glm::value_ptr(mat)));
     }
 
     void OpenGLShader::UploadUniformFloat(const std::string& name, const float scalar)
     {
+        EG_PROFILE_FUNCTION();
         EG_OPENGL_CALL(glUniform1fv(GetUniformLocation(name), 1, &scalar));
     }
 
     void OpenGLShader::UploadUniformFloat2(const std::string& name, const glm::vec2& vec)
     {
+        EG_PROFILE_FUNCTION();
         EG_OPENGL_CALL(glUniform2fv(GetUniformLocation(name), 1, glm::value_ptr(vec)));
     }
 
     void OpenGLShader::UploadUniformFloat3(const std::string& name, const glm::vec3& vec)
     {
+        EG_PROFILE_FUNCTION();
         EG_OPENGL_CALL(glUniform3fv(GetUniformLocation(name), 1, glm::value_ptr(vec)));
     }
 
     void OpenGLShader::UploadUniformFloat4(const std::string& name, const glm::vec4& vec)
     {
+        EG_PROFILE_FUNCTION();
         EG_OPENGL_CALL(glUniform4fv(GetUniformLocation(name), 1, glm::value_ptr(vec)));
     }
 
     void OpenGLShader::UploadUniformInt(const std::string& name, const int scalar)
     {
+        EG_PROFILE_FUNCTION();
         EG_OPENGL_CALL(glUniform1iv(GetUniformLocation(name), 1, &scalar));
     }
+
     void OpenGLShader::UploadUniformInt2(const std::string& name, const glm::i32vec2& vec)
     {
+        EG_PROFILE_FUNCTION();
         EG_OPENGL_CALL(glUniform2iv(GetUniformLocation(name), 1, glm::value_ptr(vec)));
     }
 
     void OpenGLShader::UploadUniformInt3(const std::string& name, const glm::i32vec3& vec)
     {
+        EG_PROFILE_FUNCTION();
         EG_OPENGL_CALL(glUniform3iv(GetUniformLocation(name), 1, glm::value_ptr(vec)));
     }
 
     void OpenGLShader::UploadUniformInt4(const std::string& name, const glm::i32vec4& vec)
     {
+        EG_PROFILE_FUNCTION();
         EG_OPENGL_CALL(glUniform4iv(GetUniformLocation(name), 1, glm::value_ptr(vec)));
     }
 

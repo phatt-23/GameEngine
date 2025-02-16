@@ -3,6 +3,7 @@
 //
 #pragma once
 
+#include "Core/Core.h"
 #include "Renderer/RendererAPI.h"
 #include "Renderer/VertexArray.h"
 #include "Renderer/Camera.h"
@@ -26,9 +27,12 @@ namespace Engine
 
         static void OnWindowResize(int width, int height);
     private:
-        inline static struct SceneData {
+        struct SceneData 
+        {
             glm::mat4 ViewProjectionMatrix;
-        } *s_SceneData = nullptr;
+        };
+
+        inline static Scope<SceneData> s_SceneData = CreateScope<SceneData>();
     };
 
 }

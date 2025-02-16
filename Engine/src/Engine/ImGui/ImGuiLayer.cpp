@@ -2,6 +2,7 @@
 // Created by phatt on 2/10/25.
 //
 
+#include "Core/Core.h"
 #include "Core/Application.h"
 #include "ImGui/ImGuiLayer.h"
 #include "imgui/backends/imgui_impl_glfw.h"
@@ -16,11 +17,12 @@ namespace Engine
     ImGuiLayer::ImGuiLayer()
         : Layer("ImGuiLayer") {}
 
-    ImGuiLayer::~ImGuiLayer()
-    = default;
+    ImGuiLayer::~ImGuiLayer() = default;
 
     void ImGuiLayer::OnAttach()
     {
+        EG_PROFILE_FUNCTION();
+
         if (ImGuiInitialized)
             return;
 
@@ -42,6 +44,8 @@ namespace Engine
 
     void ImGuiLayer::OnDetach()
     {
+        EG_PROFILE_FUNCTION();
+
         ImGui_ImplOpenGL3_Shutdown();
         ImGui_ImplGlfw_Shutdown();
         ImGui::DestroyContext();
@@ -49,6 +53,8 @@ namespace Engine
 
     void ImGuiLayer::Begin()
     {
+        EG_PROFILE_FUNCTION();
+
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
@@ -56,6 +62,8 @@ namespace Engine
 
     void ImGuiLayer::End()
     {
+        EG_PROFILE_FUNCTION();
+
         ImGuiIO& io = ImGui::GetIO();
         Application& app = Application::Get();
         io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
@@ -70,12 +78,6 @@ namespace Engine
             ImGui::RenderPlatformWindowsDefault();
             glfwMakeContextCurrent(currentContext);
         }
-    }
-
-    void ImGuiLayer::OnImGuiRender()
-    {
-        static bool show = true;
-        ImGui::ShowDemoWindow(&show);
     }
 
 }

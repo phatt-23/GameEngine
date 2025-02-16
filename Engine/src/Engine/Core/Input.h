@@ -8,7 +8,8 @@
 namespace Engine
 {
 
-    class Input {
+    class Input 
+    {
         static Input* s_Instance;
 
     public:

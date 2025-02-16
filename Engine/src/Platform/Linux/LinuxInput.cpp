@@ -11,9 +11,6 @@
 
 namespace Engine
 {
-    // We can do it here because Input has no data members.
-    Input* Input::s_Instance = new LinuxInput();
-
     bool LinuxInput::IsKeyPressedImpl(int keyCode) {
         auto window = (GLFWwindow*)Application::Get().GetWindow().GetNativeWindow();
         int state = glfwGetKey(window, keyCode);

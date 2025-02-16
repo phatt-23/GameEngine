@@ -5,48 +5,76 @@
 
 namespace Engine
 {
-    OpenGLTexture2D::OpenGLTexture2D(const std::string& path)
-        : m_Path(path), m_RendererID(), m_Height(), m_Width(), m_Channels()
+    OpenGLTexture2D::OpenGLTexture2D(unsigned int width, unsigned int height)
+        : m_Path({}), m_RendererID(), m_Width(width), m_Height(height), 
+        m_Channels(4), m_DataFormat(GL_RGBA), m_InternalFormat(GL_RGBA8) // TODO: Paramtrize this.
     {
+        EG_PROFILE_FUNCTION();
+        EG_OPENGL_CALL(glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID));
+        EG_OPENGL_CALL(glTextureStorage2D(m_RendererID, 1, m_InternalFormat, m_Width, m_Height));
+
+        EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+        EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+        EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_S, GL_REPEAT));
+        EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_T, GL_REPEAT));
+    }
+
+
+    OpenGLTexture2D::OpenGLTexture2D(const std::string& path)
+        : m_Path(path), m_RendererID(), m_Width(), m_Height(), m_Channels()
+    {
+        EG_PROFILE_FUNCTION();
         stbi_set_flip_vertically_on_load(true);
         int width, height, channels;
-        unsigned char* imageData = stbi_load(path.c_str(), &width, &height, &channels, 0);
+        unsigned char* imageData = stbi_load(m_Path.value().c_str(), &width, &height, &channels, 0);
         stbi_set_flip_vertically_on_load(false);
 
         m_Width = width;
         m_Height = height; 
         m_Channels = channels;
 
-        EG_CORE_ASSERT(imageData != nullptr, "Failed to load image ({})!", path);
+        EG_CORE_ASSERT(imageData != nullptr, "Failed to load image ({})!", m_Path.value());
 
-        GLenum format, internalFormat = 0;
-        switch (m_Channels)
-        {
-            case 1: format = GL_RED; internalFormat = GL_R8; break;
-            case 2: format = GL_RG; internalFormat = GL_RG8; break;
-            case 3: format = GL_RGB; internalFormat = GL_RGB8; break;
-            case 4: format = GL_RGBA; internalFormat = GL_RGBA8; break;
-            default: EG_CORE_ASSERT(format, "Unknown texture format (number of channels)!"); break;
-        }
+        auto[m_DataFormat, m_InternalFormat] = [&] -> std::pair<unsigned int, unsigned int> {
+            switch (m_Channels)
+            {
+                case 1: return {GL_RED, GL_R8};
+                case 2: return {GL_RG, GL_RG8};
+                case 3: return {GL_RGB, GL_RGB8};
+                case 4: return {GL_RGBA, GL_RGBA8};
+                default: 
+                    EG_CORE_ASSERT(false, "Unknown texture format (number of channels) for image '{}'!", m_Path.value()); 
+                    return {0, 0};
+            }
+        }();
 
         EG_OPENGL_CALL(glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID));
-        EG_OPENGL_CALL(glBindTexture(GL_TEXTURE_2D, 0)); // added
-        EG_OPENGL_CALL(glTextureStorage2D(m_RendererID, 1, internalFormat, m_Width, m_Height));
+        EG_OPENGL_CALL(glTextureStorage2D(m_RendererID, 1, m_InternalFormat, m_Width, m_Height));
 
         EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
         EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-        
+        EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_S, GL_REPEAT));
+        EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_T, GL_REPEAT));
+
         EG_CORE_WARN("Image size in bits: {} ({}x{}x{}) and bytes: {}", 
                      width * height * channels, width, height, channels, (width * height * channels)/8);
 
-        // EG_OPENGL_CALL(glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, m_Width, m_Height, 0, format, GL_UNSIGNED_BYTE, imageData));
-        EG_OPENGL_CALL(glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, format, GL_UNSIGNED_BYTE, imageData));
+        // WARN: OpenGL (on Linux) leaks memory here (using libgallium).
+        EG_OPENGL_CALL(glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, m_DataFormat, GL_UNSIGNED_BYTE, imageData));
         stbi_image_free(imageData);
     }
 
     OpenGLTexture2D::~OpenGLTexture2D()
     {
+        EG_PROFILE_FUNCTION();
         EG_OPENGL_CALL(glDeleteTextures(1, &m_RendererID));
+    }
+
+    void OpenGLTexture2D::SetData(void* data, unsigned int size)
+    {
+        EG_PROFILE_FUNCTION();
+        EG_CORE_ASSERT(size == m_Width * m_Height * m_Channels, "Size ({}) doesn't match the size of the texture ({})!", size, m_Width * m_Height * m_Channels);
+        glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, m_DataFormat, GL_UNSIGNED_BYTE, data);
     }
 
     unsigned int OpenGLTexture2D::GetWidth() const
@@ -61,11 +89,13 @@ namespace Engine
 
     void OpenGLTexture2D::Bind(unsigned int slot) const
     {
+        EG_PROFILE_FUNCTION();
         EG_OPENGL_CALL(glBindTextureUnit(slot, m_RendererID));
     }
 
     void OpenGLTexture2D::Unbind() const
     {
+        EG_PROFILE_FUNCTION();
         EG_OPENGL_CALL(glBindTextureUnit(0, m_RendererID));
     }
 }

@@ -4,14 +4,25 @@ project(Sandbox)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../Target)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 
-if (NOT DISABLE_ASAN)
+
+# By default CONFIG (which is set by -DCMAKE_BUILD_TYPE=DEBUG 
+# or -DCMAKE_BUILD_TYPE=RELEASE) is set to DEBUG
+add_compile_options(
+    -Wall 
+    -Wextra 
+    -Wconversion
+    -pedantic
+    $<$<CONFIG:DEBUG>:-g3>
+    $<$<CONFIG:DEBUG>:-Og>
+    $<$<CONFIG:RELEASE>:-O3>
+)
+
+if (NOT DISABLE_ASAN AND $<CONFIG:DEBUG>)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-omit-frame-pointer")
 endif()
-
-add_compile_options(-Wall -Wextra -pedantic)
 
 file(GLOB_RECURSE sandbox_sources "src/**.cpp")
 file(GLOB_RECURSE sandbox_headers "src/**.h")

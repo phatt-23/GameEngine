@@ -1,5 +1,5 @@
 #type vertex
-#version 410
+#version 410 core
 
 layout(location = 0) in vec3 a_Position;
 
@@ -16,7 +16,7 @@ void main(void)
 }
 
 #type pixel
-#version 410
+#version 410 core
 
 in vec4 v_Color;
 

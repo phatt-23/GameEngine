@@ -3,50 +3,79 @@
 //
 #pragma once
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+/// Include order matters here. /////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifdef ENGINE_ENABLE_LOGGING
-    #include "Core/Log.h"
-#endif
+/////////////////////////////////////////////////////////////////////////////////////////////
+/// Logging /////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+#include "Core/Log.h"
 
 
-/// Assertions
-#if defined(ENGINE_ENABLE_ASSERTS)
-    #include <source_location>
-    #include <stacktrace>
-    #include <sstream>
+/////////////////////////////////////////////////////////////////////////////////////////////
+/// Formatting Strings //////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
 
-    /// __builtin_trap is an GCC intrinsic.
-    #define EG_CORE_ASSERT(x, ...) {                                                \
-        if (!(x)) {                                                                 \
-            auto loc = std::source_location::current();                             \
-            EG_CORE_ERROR("Assertion failed at: {}({}:{}) `{}`!",                   \
-                loc.file_name(), loc.line(), loc.column(), loc.function_name());    \
-            EG_CORE_ERROR(__VA_ARGS__);                                             \
-            __builtin_trap();                                                       \
-        }                                                                           \
+#include "Core/DynamicFormat.h"
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/// Assertions //////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+#include "Debug/Assert.h"
+///
+/////////////////////////////////////////////////////////////////////////////////////////////
+/// Profiling ///////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+#include "Debug/Instrumentor.h"
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/// Smart Pointers //////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+namespace Engine
+{
+    template<typename T>
+    using Ref = std::shared_ptr<T>;
+
+    template<typename T>
+    using Scope = std::unique_ptr<T>;
+
+    template<typename T, typename... Args>
+    Ref<T> CreateRef(Args&&... args)
+    {
+        return std::make_shared<T>(std::forward<Args>(args)...);
     }
 
-    /// __builtin_trap is an GCC intrinsic.
-    #define EG_ASSERT(x, ...) {                                                     \
-        if (!(x)) {                                                                 \
-            auto loc = std::source_location::current();                             \
-            EG_ERROR("Assertion failed at: {}({}:{}) `{}`!",                        \
-                loc.file_name(), loc.line(), loc.column(), loc.function_name());    \
-            EG_ERROR(__VA_ARGS__);                                                  \
-            __builtin_trap();                                                       \
-        }                                                                           \
+    template<typename T>
+    Ref<T> CreateRef(T* ptr)
+    {
+        return std::make_shared<T>(ptr);
     }
-#else 
-    #define EG_CORE_ASSERT(x, ...)
-    #define EG_ASSERT(x, ...)
-#endif
 
+    template<typename T, typename... Args>
+    Scope<T> CreateScope(Args&&... args)
+    {
+        return std::make_unique<T>(std::forward<Args>(args)...);
+    }
 
-/// Bit-field
-#define BIT(x) (1 << (x))
+    template<typename T>
+    Scope<T> CreateScope(T* ptr)
+    {
+        return std::make_unique<T>(ptr);
+    }
+}
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+/// Utility /////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
 
-/// Create curried member-function with current object instance bounded.
+#define EG_BIT(x) (1 << (x))
+#define EG_IM_UNUSED(_PARAM) ((void)_PARAM)
+
 #ifdef ENGINE_FUNCTION_CURRYING_USE_LAMBDA
     #define EG_FORWARD_EVENT_TO_MEM_FN(fn) ([this](auto&& e) -> bool { return fn(std::forward<decltype(e)>(e)); })
 #else
@@ -54,15 +83,6 @@
 #endif
 
 
-namespace Engine
-{
-    template<typename T>
-    using Ref = std::shared_ptr<T>;
-    
-    template<typename T>
-    using Scope = std::unique_ptr<T>;
-}
 
-#define EG_IM_UNUSED(_PARAM) ((void)_PARAM)
 
 
