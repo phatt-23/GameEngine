@@ -4,7 +4,6 @@
 #pragma once
 
 #include "Event/Event.h"
-#include <utility>
 
 namespace Engine
 {
@@ -13,11 +12,12 @@ namespace Engine
         std::string Title;
         unsigned int Width, Height;
 
-        explicit WindowProps(std::string title = "Engine Window",
+        explicit WindowProps(std::string&& title = "Engine Window",
                     unsigned int width = 1280,
                     unsigned int height = 720)
-            : Title(std::move(title)), Width(width), Height(height) {}
+            : Title(title), Width(width), Height(height) {}
     };
+
 
     class Window
     {

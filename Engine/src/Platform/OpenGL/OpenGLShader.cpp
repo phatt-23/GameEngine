@@ -269,6 +269,36 @@ namespace Engine
         UploadUniformInt(name, value);
     }
 
+    void OpenGLShader::SetInt2(const std::string& name, const glm::i32vec2& vec)
+    {
+        EG_PROFILE_FUNCTION();
+        UploadUniformInt2(name, vec);
+    }
+
+    void OpenGLShader::SetInt3(const std::string& name, const glm::i32vec3& vec)
+    {
+        EG_PROFILE_FUNCTION();
+        UploadUniformInt3(name, vec);
+    }
+
+    void OpenGLShader::SetInt4(const std::string& name, const glm::i32vec4& vec)
+    {
+        EG_PROFILE_FUNCTION();
+        UploadUniformInt4(name, vec);
+    }
+
+    void OpenGLShader::SetFloat(const std::string& name, const float scalar)
+    {
+        EG_PROFILE_FUNCTION();
+        UploadUniformFloat(name, scalar);
+    }
+
+    void OpenGLShader::SetFloat2(const std::string& name, const glm::vec2& vec)
+    {
+        EG_PROFILE_FUNCTION();
+        UploadUniformFloat2(name, vec);
+    }
+
     void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& vec)
     {
         EG_PROFILE_FUNCTION();
@@ -279,6 +309,12 @@ namespace Engine
     {
         EG_PROFILE_FUNCTION();
         UploadUniformFloat4(name, vec);
+    }
+
+    void OpenGLShader::SetMat3(const std::string& name, const glm::mat3& mat)
+    {
+        EG_PROFILE_FUNCTION();
+        UploadUniformMat3(name, mat);
     }
 
     void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& mat)
@@ -304,6 +340,12 @@ namespace Engine
 
         m_LocationCache[name] = location;
         return location;
+    }
+    
+    void OpenGLShader::UploadUniformMat3(const std::string& name, const glm::mat3& mat)
+    {
+        EG_PROFILE_FUNCTION();
+        EG_OPENGL_CALL(glUniformMatrix3fv(GetUniformLocation(name), 1, GL_FALSE, glm::value_ptr(mat)));
     }
 
     void OpenGLShader::UploadUniformMat4(const std::string &name, const glm::mat4 &mat)

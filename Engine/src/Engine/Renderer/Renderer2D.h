@@ -9,6 +9,17 @@
 namespace Engine
 {
 
+struct DrawQuadProps
+{
+    glm::vec3 Position;
+    glm::vec2 Size = glm::vec2(1.0f);
+    glm::vec4 Color = glm::vec4(1.0f);
+    Ref<Texture2D> Texture = nullptr;
+    float RotationAngle = 0.0f;
+    float TilingFactor = 1.0f;
+};
+
+
 class Renderer2D
 {
 public:
@@ -17,11 +28,9 @@ public:
 
     static void BeginScene(const OrthographicCamera& camera);
     static void EndScene();
-    
-    static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color);
-    static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);
-    static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture>& texture);
-    static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture>& texture);
+    static void Flush();
+ 
+    static void DrawQuad(const DrawQuadProps& props);
 };
 
 }

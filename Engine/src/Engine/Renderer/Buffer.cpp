@@ -41,7 +41,7 @@ namespace Engine
     //// VertexBuffer //////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    Ref<VertexBuffer> VertexBuffer::Create(float *vertices, unsigned int count)
+    Ref<VertexBuffer> VertexBuffer::Create(const f32 *vertices, const u32 count)
     {
         switch (Renderer::GetAPI())
         {
@@ -53,11 +53,23 @@ namespace Engine
         return nullptr;
     }
 
+    Ref<VertexBuffer> VertexBuffer::Create(const u32 size)
+    {
+        switch (Renderer::GetAPI())
+        {
+            case RendererAPI::API::None:   EG_CORE_ASSERT(false, "RendererAPI::None not supported!");
+            case RendererAPI::API::OpenGL: return CreateRef<OpenGLVertexBuffer>(size);
+        }
+
+        EG_CORE_ASSERT(false, "Unknown renderer API!");
+        return nullptr;
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //// IndexBuffer ///////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    Ref<IndexBuffer> IndexBuffer::Create(unsigned int* indices, unsigned int count)
+    Ref<IndexBuffer> IndexBuffer::Create(const u32* indices, u32 count)
     {
         switch (Renderer::GetAPI())
         {

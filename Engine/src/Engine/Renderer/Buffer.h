@@ -104,13 +104,16 @@ namespace Engine
     public:
         virtual ~VertexBuffer() = default;
 
+        virtual void SetData(const void* data, const u32 size) = 0;
+
         virtual void Bind() const = 0;
         virtual void Unbind() const = 0;
 
         virtual const BufferLayout& GetLayout() const = 0;
         virtual void SetLayout(BufferLayout&& layout) = 0;
 
-        static Ref<VertexBuffer> Create(float* vertices, unsigned int count);
+        static Ref<VertexBuffer> Create(const f32* vertices, const u32 count);
+        static Ref<VertexBuffer> Create(const u32 size);
     };
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -125,9 +128,9 @@ namespace Engine
         virtual void Bind() const = 0;
         virtual void Unbind() const = 0;
 
-        virtual unsigned int GetCount() const = 0;
+        virtual u32 GetCount() const = 0;
 
-        static Ref<IndexBuffer> Create(unsigned int* indices, unsigned int count);
+        static Ref<IndexBuffer> Create(const u32* indices, u32 count);
     };
 
 }

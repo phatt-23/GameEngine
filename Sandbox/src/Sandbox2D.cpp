@@ -6,6 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Renderer/Renderer2D.h"
 #include "imgui/imgui.h"
 
 Sandbox2D::Sandbox2D()
@@ -29,9 +30,39 @@ void Sandbox2D::OnUpdate(Engine::Timestep ts)
 
     Engine::Renderer2D::BeginScene(m_CameraController.GetCamera());
     {
-        Engine::Renderer2D::DrawQuad(m_QuadPosition, m_QuadSize, m_QuadColor);
-        Engine::Renderer2D::DrawQuad(m_QuadPosition - 0.5f, m_QuadSize - 0.2f, m_QuadColor * 0.4f);
-        Engine::Renderer2D::DrawQuad(m_QuadPosition + 0.5f, m_QuadSize, m_Texture);
+        // Engine::Renderer2D::DrawQuad({ 
+        //     .Position = {1.0f, 2.0f, 0.f}, 
+        //     .Texture = m_Texture, 
+        //     .RotationAngle = 10.0f 
+        // });
+
+        Engine::Renderer2D::DrawQuad({ 
+            .Position = m_QuadPosition, 
+            .Size = m_QuadSize, 
+            .Color = m_QuadColor 
+        });
+
+        Engine::Renderer2D::DrawQuad({ 
+            .Position = m_QuadPosition - 0.5f, 
+            .Size = m_QuadSize - 0.2f, 
+            .Color = m_QuadColor * 0.4f, 
+            // .RotationAngle = glm::radians(20.0f) 
+        });
+
+        // Engine::Renderer2D::DrawQuad({ 
+        //     .Position = m_QuadPosition + 0.5f, 
+        //     .Size = m_QuadSize, 
+        //     .Texture = m_Texture, 
+        //     .TilingFactor = 10.0f
+        // });
+
+        // Engine::Renderer2D::DrawQuad({ 
+        //     .Position = m_QuadPosition - glm::vec3(0.5f, 0.1f, 0.0f), 
+        //     .Size = m_QuadSize, 
+        //     .Texture = m_Texture, 
+        //     .RotationAngle = glm::radians(30.0f), 
+        //     .TilingFactor = 4.0f 
+        // });
     }
     Engine::Renderer2D::EndScene();
 }

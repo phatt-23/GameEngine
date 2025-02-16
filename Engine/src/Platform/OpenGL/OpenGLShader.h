@@ -24,12 +24,20 @@ namespace Engine
         const std::string& GetName() const override;
 
         void SetInt(const std::string& name, int value) override;
+        void SetInt2(const std::string& name, const glm::i32vec2& vec) override;
+        void SetInt3(const std::string& name, const glm::i32vec3& vec) override;
+        void SetInt4(const std::string& name, const glm::i32vec4& vec) override;
+
+        void SetFloat(const std::string& name, const float scalar) override;
+        void SetFloat2(const std::string& name, const glm::vec2& vec) override;
         void SetFloat3(const std::string& name, const glm::vec3& vec) override;
         void SetFloat4(const std::string& name, const glm::vec4& vec) override;
+
+        void SetMat3(const std::string& name, const glm::mat3& mat) override;
         void SetMat4(const std::string& name, const glm::mat4& mat) override;
 
+    private:
         int GetUniformLocation(const std::string& name);
-        void UploadUniformMat4(const std::string& name, const glm::mat4& mat);
 
         void UploadUniformFloat(const std::string& name, const float scalar);
         void UploadUniformFloat2(const std::string& name, const glm::vec2& vec);
@@ -41,7 +49,9 @@ namespace Engine
         void UploadUniformInt3(const std::string& name, const glm::i32vec3& vec);
         void UploadUniformInt4(const std::string& name, const glm::i32vec4& vec);
 
-    private:
+        void UploadUniformMat3(const std::string& name, const glm::mat3& mat);
+        void UploadUniformMat4(const std::string& name, const glm::mat4& mat);
+
         [[nodiscard]] 
         std::string ReadFile(const std::string& filepath) const;
 

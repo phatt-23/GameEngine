@@ -19,7 +19,7 @@ namespace Engine
 
         void SetViewport(int x, int y, int width, int height) override;
 
-        void DrawIndexed(const Ref<VertexArray>& vertexArray) override;
+        void DrawIndexed(const Ref<VertexArray>& vertexArray, const u32 indexCount = 0) override;
     };
 
 }

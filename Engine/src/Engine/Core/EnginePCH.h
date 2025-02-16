@@ -30,6 +30,9 @@
 #include <functional>
 #include <optional>
 
+#include <cstdint>
+#include <cfloat>
+
 #include <string>
 #include <string_view>
 #include <vector>
