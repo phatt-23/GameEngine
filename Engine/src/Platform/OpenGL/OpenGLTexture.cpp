@@ -5,23 +5,20 @@
 
 namespace Engine
 {
-    OpenGLTexture2D::OpenGLTexture2D(unsigned int width, unsigned int height)
-        : m_Path({}), m_RendererID(), m_Width(width), m_Height(height), 
-        m_Channels(4), m_DataFormat(GL_RGBA), m_InternalFormat(GL_RGBA8) // TODO: Paramtrize this.
-    {
-        EG_PROFILE_FUNCTION();
-        EG_OPENGL_CALL(glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID));
-        EG_OPENGL_CALL(glTextureStorage2D(m_RendererID, 1, m_InternalFormat, m_Width, m_Height));
-
-        EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
-        EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-        EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_S, GL_REPEAT));
-        EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_T, GL_REPEAT));
-    }
-
-
     OpenGLTexture2D::OpenGLTexture2D(const std::string& path)
         : m_Path(path), m_RendererID(), m_Width(), m_Height(), m_Channels()
+    {
+        m_Name = path.substr(path.find_last_of("/\\") + 1, path.find_last_of('.') - path.find_last_of("/\\") - 1);
+        LoadTexture(path);
+    }
+
+    OpenGLTexture2D::OpenGLTexture2D(const std::string& name, const std::string& path)
+        : m_Path(path), m_Name(name), m_RendererID(), m_Width(), m_Height(), m_Channels()
+    {
+        LoadTexture(path);
+    }
+
+    void OpenGLTexture2D::LoadTexture(const std::string& path)
     {
         EG_PROFILE_FUNCTION();
         stbi_set_flip_vertically_on_load(true);
@@ -64,6 +61,21 @@ namespace Engine
         stbi_image_free(imageData);
     }
 
+    OpenGLTexture2D::OpenGLTexture2D(const std::string& name, unsigned int width, unsigned int height)
+        : m_Path({}), m_Name(name), m_RendererID(), m_Width(width), m_Height(height), 
+        m_Channels(4), m_DataFormat(GL_RGBA), m_InternalFormat(GL_RGBA8) // TODO: Paramtrize this.
+    {
+        EG_PROFILE_FUNCTION();
+        
+        EG_OPENGL_CALL(glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID));
+        EG_OPENGL_CALL(glTextureStorage2D(m_RendererID, 1, m_InternalFormat, m_Width, m_Height));
+
+        EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+        EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+        EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_S, GL_REPEAT));
+        EG_OPENGL_CALL(glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_T, GL_REPEAT));
+    }
+
     OpenGLTexture2D::~OpenGLTexture2D()
     {
         EG_PROFILE_FUNCTION();
@@ -75,6 +87,11 @@ namespace Engine
         EG_PROFILE_FUNCTION();
         EG_CORE_ASSERT(size == m_Width * m_Height * m_Channels, "Size ({}) doesn't match the size of the texture ({})!", size, m_Width * m_Height * m_Channels);
         glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, m_DataFormat, GL_UNSIGNED_BYTE, data);
+    }
+
+    const std::string& OpenGLTexture2D::GetName() const
+    {
+        return m_Name;
     }
 
     unsigned int OpenGLTexture2D::GetWidth() const

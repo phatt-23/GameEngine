@@ -36,6 +36,8 @@ namespace Engine
         void SetMat3(const std::string& name, const glm::mat3& mat) override;
         void SetMat4(const std::string& name, const glm::mat4& mat) override;
 
+        void SetIntArray(const std::string& name, const i32* array, const u32 count) override;
+
     private:
         int GetUniformLocation(const std::string& name);
 
@@ -51,6 +53,8 @@ namespace Engine
 
         void UploadUniformMat3(const std::string& name, const glm::mat3& mat);
         void UploadUniformMat4(const std::string& name, const glm::mat4& mat);
+    
+        void UploadUniformIntArray(const std::string& name, const i32* array, const u32 count);
 
         [[nodiscard]] 
         std::string ReadFile(const std::string& filepath) const;

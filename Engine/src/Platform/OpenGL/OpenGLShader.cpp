@@ -263,6 +263,11 @@ namespace Engine
         EG_OPENGL_CALL(glUseProgram(0));
     }
 
+    const std::string& OpenGLShader::GetName() const
+    {
+        return m_Name;
+    }
+
     void OpenGLShader::SetInt(const std::string& name, int value)
     {
         EG_PROFILE_FUNCTION();
@@ -323,9 +328,10 @@ namespace Engine
         UploadUniformMat4(name, mat);
     }
 
-    const std::string& OpenGLShader::GetName() const
+    void OpenGLShader::SetIntArray(const std::string& name, const i32* array, const u32 count)
     {
-        return m_Name;
+        EG_PROFILE_FUNCTION();
+        UploadUniformIntArray(name, array, count);
     }
 
     int OpenGLShader::GetUniformLocation(const std::string &name)
@@ -402,4 +408,9 @@ namespace Engine
         EG_OPENGL_CALL(glUniform4iv(GetUniformLocation(name), 1, glm::value_ptr(vec)));
     }
 
+    void OpenGLShader::UploadUniformIntArray(const std::string& name, const i32* array, const u32 count)
+    {
+        EG_PROFILE_FUNCTION();
+        EG_OPENGL_CALL(glUniform1iv(GetUniformLocation(name), count, array));
+    }
 }

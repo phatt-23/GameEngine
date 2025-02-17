@@ -17,6 +17,7 @@ Sandbox2D::Sandbox2D()
 void Sandbox2D::OnAttach() 
 {
     m_Texture = Engine::Texture2D::Create("assets/textures/ISO_C++_Logo.png");
+    m_TextureJirka = Engine::Texture2D::Create("assets/textures/jirka.jpg");
 }
 
 void Sandbox2D::OnUpdate(Engine::Timestep ts) 
@@ -36,25 +37,9 @@ void Sandbox2D::OnUpdate(Engine::Timestep ts)
         //     .RotationAngle = 10.0f 
         // });
 
-        Engine::Renderer2D::DrawQuad({ 
-            .Position = m_QuadPosition, 
-            .Size = m_QuadSize, 
-            .Color = m_QuadColor 
-        });
-
-        Engine::Renderer2D::DrawQuad({ 
-            .Position = m_QuadPosition - 0.5f, 
-            .Size = m_QuadSize - 0.2f, 
-            .Color = m_QuadColor * 0.4f, 
-            // .RotationAngle = glm::radians(20.0f) 
-        });
-
-        // Engine::Renderer2D::DrawQuad({ 
-        //     .Position = m_QuadPosition + 0.5f, 
-        //     .Size = m_QuadSize, 
-        //     .Texture = m_Texture, 
-        //     .TilingFactor = 10.0f
-        // });
+        Engine::Renderer2D::DrawQuad(m_QuadPosition, m_QuadSize, m_QuadColor);
+        Engine::Renderer2D::DrawQuad(m_QuadPosition + 0.5f, m_QuadSize, m_Texture, 3.0f, {1.0f, 0.5f, 0.5f, 1.0f});
+        Engine::Renderer2D::DrawRotatedQuad(m_QuadPosition - 0.5f, m_QuadSize, glm::radians(30.0f), m_TextureJirka);
 
         // Engine::Renderer2D::DrawQuad({ 
         //     .Position = m_QuadPosition - glm::vec3(0.5f, 0.1f, 0.0f), 
