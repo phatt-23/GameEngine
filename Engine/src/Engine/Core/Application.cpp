@@ -16,13 +16,12 @@ namespace Engine
     Application::Application()
     {
         EG_PROFILE_FUNCTION();
-
         EG_CORE_ASSERT(s_Instance == nullptr, "Application already exists.");
         s_Instance = this;
 
         m_Window = Window::Create();
         m_Window->SetEventCallback([this](Event& e) -> void { OnEvent(e); });
-        m_Window->SetVSync(true);
+        m_Window->SetVSync(false);
 
         Renderer::Init();
 
@@ -33,34 +32,24 @@ namespace Engine
     Application::~Application() 
     {
         EG_PROFILE_FUNCTION();
-
         Renderer::Shutdown();
     }
 
     void Application::Run()
     {
         EG_PROFILE_FUNCTION();
-
         while (m_Running)
         {
-            EG_PROFILE_SCOPE("One Frame.");
-
             const auto time = (float)glfwGetTime();
             Timestep timestep = time - m_LastFrameTime;
             m_LastFrameTime = time;
 
             if (!m_Minimized)
             {
-                EG_PROFILE_SCOPE("Updating layers.");
-
                 for (Layer* layer : m_LayerStack)
                 {
                     layer->OnUpdate(timestep);
                 }
-            }
-
-            {
-                EG_PROFILE_SCOPE("Updating ImGui layers.");
 
                 m_ImGuiLayer->Begin();
                 for (Layer* layer : m_LayerStack)

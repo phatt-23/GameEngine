@@ -4,3 +4,4 @@ cmake-build-debug/
 .cache/
 build/
 assets/textures/
+Engine-Application*.json

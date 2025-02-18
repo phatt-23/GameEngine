@@ -9,6 +9,10 @@
 
 namespace Engine
 {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //// Texture2D /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     Ref<Texture2D> Texture2D::Create(const std::string& name, unsigned int width, unsigned int height)
     {
         switch (Renderer::GetAPI())
@@ -44,5 +48,32 @@ namespace Engine
 
         EG_CORE_ASSERT(false, "Unknown renderer API!");
         return nullptr;
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //// TextureLibrary /////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void TextureLibrary::Add(const Ref<Texture>& texture)
+    {
+        EG_CORE_ASSERT(!Exists(texture->GetName()), "Texture with name '{}' already exists in the texture library!", texture->GetName());
+        m_Textures[texture->GetName()] = texture;
+    }
+
+    void TextureLibrary::Add(const std::string& name, const Ref<Texture>& texture)
+    {
+        EG_CORE_ASSERT(!Exists(name), "Texture with name '{}' already exists in the texture library!", name);
+        m_Textures[name] = texture;
+    }
+
+    Ref<Texture> TextureLibrary::Get(const std::string& name)
+    {
+        EG_CORE_ASSERT(Exists(name), "Texture with name '{}' doesnt exist in the texture library!", name);
+        return m_Textures[name];
+    }
+
+    bool TextureLibrary::Exists(const std::string& name) const
+    {
+        return m_Textures.contains(name);
     }
 }

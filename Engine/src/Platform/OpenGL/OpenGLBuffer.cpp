@@ -14,20 +14,21 @@ namespace Engine
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     OpenGLVertexBuffer::OpenGLVertexBuffer(const u32 size)
+        : m_Size(size)
     {
         EG_PROFILE_FUNCTION();
         EG_OPENGL_CALL(glCreateBuffers(1, &m_RendererID));
         EG_OPENGL_CALL(glBindBuffer(GL_ARRAY_BUFFER, m_RendererID));
-        EG_OPENGL_CALL(glBufferData(GL_ARRAY_BUFFER, (GLsizei)size, nullptr, GL_DYNAMIC_DRAW));
+        EG_OPENGL_CALL(glBufferData(GL_ARRAY_BUFFER, (GLsizei)m_Size, nullptr, GL_DYNAMIC_DRAW));
     }
 
     OpenGLVertexBuffer::OpenGLVertexBuffer(const f32* vertices, const u32 count)
-        : m_RendererID(0)
+        : m_RendererID(0), m_Size(count * sizeof(f32))
     {
         EG_PROFILE_FUNCTION();
         EG_OPENGL_CALL(glCreateBuffers(1, &m_RendererID));
         EG_OPENGL_CALL(glBindBuffer(GL_ARRAY_BUFFER, m_RendererID));
-        EG_OPENGL_CALL(glBufferData(GL_ARRAY_BUFFER, (GLsizei)count * sizeof(float), vertices, GL_STATIC_DRAW));
+        EG_OPENGL_CALL(glBufferData(GL_ARRAY_BUFFER, (GLsizei)m_Size, vertices, GL_STATIC_DRAW));
         // EG_OPENGL_CALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
     }
 
@@ -40,8 +41,9 @@ namespace Engine
     void OpenGLVertexBuffer::SetData(const void* data, const u32 size)
     {
         EG_PROFILE_FUNCTION();
+        EG_CORE_ASSERT(size <= m_Size, "Can't set data of size {} to a vertex buffer with size {}!", size, m_Size);
         EG_OPENGL_CALL(glBindBuffer(GL_ARRAY_BUFFER, m_RendererID));
-        EG_OPENGL_CALL(glBufferSubData(GL_ARRAY_BUFFER, 0, size, data));
+        EG_OPENGL_CALL(glBufferSubData(GL_ARRAY_BUFFER, 0, m_Size, data));
     }
 
     void OpenGLVertexBuffer::Bind() const

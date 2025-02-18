@@ -20,6 +20,8 @@ namespace Engine
         virtual void Unbind() const = 0;
 
         virtual void SetData(void* data, unsigned int size) = 0;
+
+        virtual bool operator==(const Texture& other) const = 0;
     };
 
     class Texture2D : public Texture
@@ -32,4 +34,17 @@ namespace Engine
         static Ref<Texture2D> Create(const std::string& name, unsigned int width, unsigned int height);
     };
 
+
+    class TextureLibrary
+    {
+    public:
+        void Add(const Ref<Texture>& texture);
+        void Add(const std::string& name, const Ref<Texture>& texture);
+
+        Ref<Texture> Get(const std::string& name);
+        bool Exists(const std::string& name) const;
+
+    private:
+        std::unordered_map<std::string, Ref<Texture>> m_Textures;
+    };
 }
